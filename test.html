@@ -9,33 +9,44 @@
 </head>
 
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.html">나만의 단어장</a></li>
-            <li><a href="learning.html">오늘의 학습</a></li>
-            <li><a href="test.html" class="active">O/X 테스트</a></li>
-            <li><a href="stats.html">통계</a></li>
-        </ul>
-    </nav>
 
-    <div class="container">
-        <div id="test-container">
-            <div id="test-header">
-                <span id="progress">1/20</span>
-                <span id="timer">00:00:04</span>
-            </div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">나만의 단어장</a></li>
+                <li><a href="learning.html">오늘의 학습</a></li>
+                <li><a href="test.html" class="active">O/X 테스트</a></li>
+                <li><a href="stats.html">통계</a></li>
+            </ul>
+        </nav>
+    </header>
 
-            <div id="quiz-content">
-                <h2>prototype</h2>
-                <p>받아들이다, 수락하다</p>
-            </div>
+    <main>
+        <div class="container">
+            <div id="test-container">
 
-            <div id="ox-buttons">
-                <button class="ox-btn" id="btn-x">X</button>
-                <button class="ox-btn" id="btn-o">O</button>
+                <div id="test-header">
+                    <span id="progress">1/20</span>
+                    <span id="timer">00:00:04</span>
+                </div>
+
+                <section id="quiz-content">
+                    <h2>prototype</h2>
+                    <p>받아들이다, 수락하다</p>
+                </section>
+
+                <div id="ox-buttons">
+                    <button class="ox-btn" id="btn-x">X</button>
+                    <button class="ox-btn" id="btn-o">O</button>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Vocab. All rights reserved.</p>
+    </footer>
+
 </body>
 
 </html>

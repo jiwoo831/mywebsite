@@ -5,28 +5,17 @@ body {
     margin: 0;
     padding: 0;
     color: #333;
+    display: flex; /* footer를 하단에 고정하기 위한 flex */
+    flex-direction: column; /* body의 자식 요소들을 세로로 쌓음 */
+    min-height: 100vh; /* 화면 전체 높이 */
 }
 
-.container {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-h1,
-h2,
-h3 {
-    color: #2c3e50;
-}
-
-/* --- 네비게이션 바 --- */
-nav {
+/* --- 시맨틱 태그: Header, Nav, Main, Footer --- */
+header {
     background-color: #34495e;
     padding: 10px 0;
-    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 nav ul {
@@ -56,6 +45,30 @@ nav ul li a.active {
     background-color: #4a6fa5;
 }
 
+main {
+    flex: 1; /* header와 footer를 제외한 모든 공간을 차지 */
+    width: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    background-color: #ecf0f1;
+    color: #7f8c8d;
+    border-top: 1px solid #ddd;
+    width: 100%;
+}
+
 /* --- 기본 버튼 및 폼 스타일 --- */
 button {
     background-color: #3498db;
@@ -79,19 +92,17 @@ input[type="search"] {
     margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    box-sizing: border-box;
-    /* padding이 width에 포함되도록 */
+    box-sizing: border-box; 
 }
 
-/* --- 페이지 1: Main Page --- */
+/* --- 페이지 1: Main Page (Flexbox 사용) --- */
 #main-layout {
     display: flex;
     gap: 20px;
 }
 
 #vocab-form {
-    flex: 1;
-    /* 1/3 비율 */
+    flex: 1; /* 1/3 비율 */
     padding: 20px;
     background: #fafafa;
     border-radius: 8px;
@@ -99,8 +110,7 @@ input[type="search"] {
 }
 
 #vocab-list-container {
-    flex: 2;
-    /* 2/3 비율 */
+    flex: 2; /* 2/3 비율 */
 }
 
 table {
@@ -109,8 +119,7 @@ table {
     margin-top: 10px;
 }
 
-th,
-td {
+th, td {
     border: 1px solid #ddd;
     padding: 12px;
     text-align: left;
@@ -120,7 +129,7 @@ th {
     background-color: #f2f2f2;
 }
 
-/* --- 페이지 2: Today's Learning --- */
+/* --- 페이지 2: Today's Learning (Flexbox 사용) --- */
 #learning-layout {
     display: flex;
     gap: 20px;
@@ -165,7 +174,7 @@ th {
     justify-content: center;
 }
 
-/* --- 페이지 3: O/X Test --- */
+/* --- 페이지 3: O/X Test (Flexbox 사용) --- */
 #test-container {
     text-align: center;
 }
@@ -214,19 +223,15 @@ th {
 }
 
 #btn-o {
-    background-color: #2ecc71;
-    /* Green */
+    background-color: #2ecc71; /* Green */
 }
-
 #btn-o:hover {
     background-color: #27ae60;
 }
 
 #btn-x {
-    background-color: #e74c3c;
-    /* Red */
+    background-color: #e74c3c; /* Red */
 }
-
 #btn-x:hover {
     background-color: #c0392b;
 }
@@ -261,45 +266,58 @@ th {
     border-collapse: collapse;
     text-align: center;
 }
-
 #calendar th {
     background: #f0f0f0;
     padding: 10px;
 }
-
 #calendar td {
     padding: 20px 10px;
     border: 1px solid #eee;
     vertical-align: top;
     height: 60px;
 }
-
 .learned {
-    background-color: #d4edda;
-    /* Light green */
+    background-color: #d4edda; /* Light green */
     color: #155724;
     font-weight: bold;
 }
-
 .learned::after {
-    content: " ✔️";
-    /* Checkmark */
+    content: " ✔️"; /* Checkmark */
 }
 
 /* (가짜) 바 차트 스타일 */
 .bar-chart {
     display: flex;
     gap: 10px;
-    align-items: flex-end;
-    /* 막대가 아래에서 시작 */
+    align-items: flex-end; /* 막대가 아래에서 시작 */
     height: 150px;
     padding: 10px;
     border-top: 1px solid #ccc;
     border-left: 1px solid #ccc;
 }
-
 .bar {
     flex: 1;
     background-color: #3498db;
     width: 100%;
+}
+
+/* --- 반응형 디자인 (모바일/데스크톱) --- */
+@media (max-width: 768px) {
+    /* 모바일 화면에서 Flex 레이아웃을 세로로 쌓음 */
+    #main-layout,
+    #learning-layout,
+    #stats-container { /* 통계 페이지도 세로로 쌓이도록 추가 */
+        flex-direction: column;
+    }
+
+    /* O/X 버튼도 세로로 쌓음 */
+    #ox-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .ox-btn {
+        font-size: 2.5em; /* 모바일에서 버튼 폰트 크기 줄임 */
+        padding: 20px;
+    }
 }
