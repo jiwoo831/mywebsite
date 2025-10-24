@@ -5,9 +5,12 @@ body {
     margin: 0;
     padding: 0;
     color: #333;
-    display: flex; /* footer를 하단에 고정하기 위한 flex */
-    flex-direction: column; /* body의 자식 요소들을 세로로 쌓음 */
-    min-height: 100vh; /* 화면 전체 높이 */
+    display: flex;
+    /* footer를 하단에 고정하기 위한 flex */
+    flex-direction: column;
+    /* body의 자식 요소들을 세로로 쌓음 */
+    min-height: 100vh;
+    /* 화면 전체 높이 */
 }
 
 /* --- 시맨틱 태그: Header, Nav, Main, Footer --- */
@@ -15,7 +18,7 @@ header {
     background-color: #34495e;
     padding: 10px 0;
     width: 100%;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 nav ul {
@@ -46,7 +49,8 @@ nav ul li a.active {
 }
 
 main {
-    flex: 1; /* header와 footer를 제외한 모든 공간을 차지 */
+    flex: 1;
+    /* header와 footer를 제외한 모든 공간을 차지 */
     width: 100%;
 }
 
@@ -92,7 +96,7 @@ input[type="search"] {
     margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 /* --- 페이지 1: Main Page (Flexbox 사용) --- */
@@ -102,7 +106,8 @@ input[type="search"] {
 }
 
 #vocab-form {
-    flex: 1; /* 1/3 비율 */
+    flex: 1;
+    /* 1/3 비율 */
     padding: 20px;
     background: #fafafa;
     border-radius: 8px;
@@ -110,7 +115,8 @@ input[type="search"] {
 }
 
 #vocab-list-container {
-    flex: 2; /* 2/3 비율 */
+    flex: 2;
+    /* 2/3 비율 */
 }
 
 table {
@@ -119,7 +125,8 @@ table {
     margin-top: 10px;
 }
 
-th, td {
+th,
+td {
     border: 1px solid #ddd;
     padding: 12px;
     text-align: left;
@@ -135,17 +142,34 @@ th {
     gap: 20px;
 }
 
+/* ▼▼▼ [수정됨] #flashcard 스타일 ▼▼▼ */
 #flashcard {
     flex: 3;
     display: flex;
+    flex-direction: column;
+    /* 세로로 쌓기 */
     justify-content: center;
     align-items: center;
     min-height: 300px;
     border: 2px solid #3498db;
     border-radius: 10px;
     background: #f0f8ff;
+}
+
+/* ▼▼▼ [새로 추가됨] 플래시카드 단어/뜻 스타일 ▼▼▼ */
+.flashcard-word {
     font-size: 3em;
     font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    /* 단어와 뜻 사이 간격 */
+}
+
+.flashcard-meaning {
+    font-size: 1.5em;
+    /* 단어보다 작게 */
+    color: #888;
+    /* 회색 글씨로 */
 }
 
 #progress-list {
@@ -223,15 +247,19 @@ th {
 }
 
 #btn-o {
-    background-color: #2ecc71; /* Green */
+    background-color: #2ecc71;
+    /* Green */
 }
+
 #btn-o:hover {
     background-color: #27ae60;
 }
 
 #btn-x {
-    background-color: #e74c3c; /* Red */
+    background-color: #e74c3c;
+    /* Red */
 }
+
 #btn-x:hover {
     background-color: #c0392b;
 }
@@ -266,35 +294,43 @@ th {
     border-collapse: collapse;
     text-align: center;
 }
+
 #calendar th {
     background: #f0f0f0;
     padding: 10px;
 }
+
 #calendar td {
     padding: 20px 10px;
     border: 1px solid #eee;
     vertical-align: top;
     height: 60px;
 }
+
 .learned {
-    background-color: #d4edda; /* Light green */
+    background-color: #d4edda;
+    /* Light green */
     color: #155724;
     font-weight: bold;
 }
+
 .learned::after {
-    content: " ✔️"; /* Checkmark */
+    content: " ✔️";
+    /* Checkmark */
 }
 
 /* (가짜) 바 차트 스타일 */
 .bar-chart {
     display: flex;
     gap: 10px;
-    align-items: flex-end; /* 막대가 아래에서 시작 */
+    align-items: flex-end;
+    /* 막대가 아래에서 시작 */
     height: 150px;
     padding: 10px;
     border-top: 1px solid #ccc;
     border-left: 1px solid #ccc;
 }
+
 .bar {
     flex: 1;
     background-color: #3498db;
@@ -303,10 +339,12 @@ th {
 
 /* --- 반응형 디자인 (모바일/데스크톱) --- */
 @media (max-width: 768px) {
+
     /* 모바일 화면에서 Flex 레이아웃을 세로로 쌓음 */
     #main-layout,
     #learning-layout,
-    #stats-container { /* 통계 페이지도 세로로 쌓이도록 추가 */
+    #stats-container {
+        /* 통계 페이지도 세로로 쌓이도록 추가 */
         flex-direction: column;
     }
 
@@ -317,7 +355,8 @@ th {
     }
 
     .ox-btn {
-        font-size: 2.5em; /* 모바일에서 버튼 폰트 크기 줄임 */
+        font-size: 2.5em;
+        /* 모바일에서 버튼 폰트 크기 줄임 */
         padding: 20px;
     }
 }
