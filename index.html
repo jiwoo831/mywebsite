@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나만의 단어장</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active">나만의 단어장</a></li>
+            <li><a href="learning.html">오늘의 학습</a></li>
+            <li><a href="test.html">O/X 테스트</a></li>
+            <li><a href="stats.html">통계</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>My Vocabulary List</h1>
+
+        <div id="main-layout">
+            <aside id="vocab-form">
+                <h3>새 단어 추가</h3>
+                <form>
+                    <label for="word">Word</label>
+                    <input type="text" id="word" name="word" placeholder="영어 단어">
+
+                    <label for="meaning">Meaning</label>
+                    <input type="text" id="meaning" name="meaning" placeholder="뜻">
+
+                    <button type="submit" style="width: 100%;">추가하기</button>
+                </form>
+            </aside>
+
+            <main id="vocab-list-container">
+                <input type="search" id="search-bar" placeholder="단어 검색...">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Word</th>
+                            <th>Meaning</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>accept</td>
+                            <td>받아들이다, 수락하다</td>
+                            <td><button>삭제</button></td>
+                        </tr>
+                        <tr>
+                            <td>prototype</td>
+                            <td>원형, 시제품</td>
+                            <td><button>삭제</button></td>
+                        </tr>
+                        <tr>
+                            <td>vocabulary</td>
+                            <td>어휘</td>
+                            <td><button>삭제</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>
