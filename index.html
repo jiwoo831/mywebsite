@@ -1,68 +1,54 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>나만의 단어장</title>
+    <title>Daily 10 Words</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
     <header>
         <nav>
-            <ul>
-                <li><a href="index.html" class="active">나만의 단어장</a></li>
-                <li><a href="learning.html">오늘의 학습</a></li>
-                <li><a href="test.html">O/X 테스트</a></li>
-                <li><a href="stats.html">통계</a></li>
-            </ul>
+            <div class="logo"><a href="index.html">DAILY 10 WORDS</a></div>
+            <div class="nav-links">
+                <a href="curriculum.html">오늘의 학습</a>
+                <a href="#">O/X 퀴즈</a>
+                <a href="#">통계</a>
+            </div>
         </nav>
     </header>
 
     <main>
-        <div class="container">
-            <h1>My Vocabulary List</h1>
-
-            <div id="main-layout">
-
-                <aside id="vocab-form">
-                    <h3>새 단어 추가</h3>
-                    <form>
-                        <label for="word">Word</label>
-                        <input type="text" id="word" name="word" placeholder="영어 단어">
-
-                        <label for="meaning">Meaning</label>
-                        <input type="text" id="meaning" name="meaning" placeholder="뜻">
-
-                        <button type="submit" style="width: 100%;">추가하기</button>
-                    </form>
-                </aside>
-
-                <section id="vocab-list-container">
-                    <input type="search" id="search-bar" placeholder="단어 검색...">
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Word</th>
-                                <th>Meaning</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="vocab-tbody">
-                        </tbody>
-                    </table>
-                </section>
+        <h1 class="hero-title">DAILY 10 WORDS</h1>
+        
+        <section class="d-day-container">
+            <div class="d-day-card">
+                <div class="icon-area">📅</div>
+                <div class="exam-name">수능</div>
+                <div class="exam-date" data-date="2025-11-13">2025.11.13</div>
+                <div class="d-day-badge" id="d-day-suneung">D-Day</div>
             </div>
-        </div>
+
+            <div class="d-day-card">
+                <div class="icon-area">📝</div>
+                <div class="exam-name">토익</div>
+                <div class="exam-date" data-date="2025-03-16">2025.03.16</div>
+                <div class="d-day-badge" id="d-day-toeic">D-Day</div>
+            </div>
+
+            <div class="d-day-card">
+                <div class="icon-area">🗣️</div>
+                <div class="exam-name">오픽</div>
+                <div class="exam-date">상시 접수</div>
+                <div class="d-day-badge">접수중</div>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 My Vocab. All rights reserved.</p>
+        <p>&copy; 2025 Daily 10 Words. All rights reserved.</p>
     </footer>
+
     <script src="script.js"></script>
 </body>
-
 </html>

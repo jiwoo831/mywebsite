@@ -1,131 +1,102 @@
-// 1. 로컬 스토리지에서 단어 목록 불러오기 (없으면 빈 배열)
-let vocabList = JSON.parse(localStorage.getItem('myVocabList'));
-
-if (!vocabList || vocabList.length === 0) {
-    vocabList = [
-        { word: "accept", meaning: "받아들이다" },
-        { word: "acceptable", meaning: "받아들일 수 있는" },
-        { word: "access", meaning: "접근, 접속" },
-        { word: "by accident", meaning: "우연히"},
-        { word: "according to~", meaning: "~에 따르면"},
-        { word: "ache", meaning: "아픔"},
-        { word: "achieve", meaning: "성취하다"},
-        { word: "achievement", meaning: "성취"},
-        { word: "activate", meaning: "활성화하다"},
-        { word: "actual", meaning: "실제의"},
-        { word: "addition", meaning: "더하기"},
-        { word: "address", meaning: "주소"},
-        { word: "advanced", meaning: "발전한,고급의"},
-        { word: "advantage", meaning: "이점,장점"},
-        { word: "disadvantage", meaning: "단점,불리한 점"},
-        { word: "advertise", meaning: "광고하다"},
-        { word: "affair", meaning: "일,사건"},
-        { word: "affect", meaning: "영향을 미치다"},
-        { word: "affection", meaning: "애정"},
-        { word: "afford", meaning: "~할 여유가 있다"},
-        { word: "backbone", meaning: "척추"},
-        { word: "ban", meaning: "금지"},
-        { word: "bare", meaning: "벌거벗은"},
-        { word: "barely", meaning: "가까스로"},
-        { word: "bargain", meaning: "흥정하다"},
-        { word: "basically", meaning: "기본적으로"},
-        { word: "bay", meaning: "구역"},
-        { word: "beak", meaning: "부리"},
-        { word: "beast", meaning: "야수"}
+/* --- 1. D-Day 계산 로직 (메인 페이지용) --- */
+function updateDDays() {
+    // 날짜 요소들을 모두 찾음
+    const dateElements = document.querySelectorAll('.exam-date[data-date]');
+    
+    dateElements.forEach(element => {
+        const targetDateStr = element.getAttribute('data-date');
+        const targetDate = new Date(targetDateStr).getTime();
+        const now = new Date().getTime();
         
+        // 차이 계산 (밀리초 단위 -> 일 단위 변환)
+        const distance = targetDate - now;
+        const days = Math.ceil(distance / (1000 * 60 * 60 * 24));
         
+        // 해당 카드의 D-Day 뱃지 찾기
+        const badge = element.nextElementSibling;
         
-    ];
-    localStorage.setItem('myVocabList', JSON.stringify(vocabList));
-}
-
-// HTML 요소들 가져오기
-const vocabForm = document.querySelector('#vocab-form form');
-const wordInput = document.querySelector('#word');
-const meaningInput = document.querySelector('#meaning');
-const searchBar = document.querySelector('#search-bar');
-const vocabTableBody = document.querySelector('#vocab-tbody');
-
-// 2. 화면에 단어 목록 그려주는 함수 (Render)
-function renderVocabList(data) {
-    // 기존 목록 비우기
-    vocabTableBody.innerHTML = '';
-
-    // 데이터 반복문 돌면서 행(tr) 추가
-    data.forEach((item, index) => {
-        const row = document.createElement('tr');
-
-        row.innerHTML = `
-            <td>${item.word}</td>
-            <td>${item.meaning}</td>
-            <td>
-                <button class="delete-btn" onclick="deleteWord(${index})">삭제</button>
-            </td>
-        `;
-        vocabTableBody.appendChild(row);
-    });
-}
-
-// 3. '단어 추가' 기능 (Add Word)
-if (vocabForm) {
-    vocabForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // 폼 제출 시 새로고침 방지
-
-        const newWord = wordInput.value.trim(); // 공백 제거
-        const newMeaning = meaningInput.value.trim();
-
-        if (newWord && newMeaning) {
-            // 새 단어 객체 생성
-            const newItem = { word: newWord, meaning: newMeaning };
-            
-            // 배열에 추가
-            vocabList.push(newItem);
-            
-            // 저장 및 화면 갱신
-            saveAndRender();
-            
-            // 입력창 초기화
-            wordInput.value = '';
-            meaningInput.value = '';
-            wordInput.focus(); // 입력창에 다시 포커스
+        if (days > 0) {
+            badge.innerText = `D-${days}`;
+            badge.style.color = "#4da9ff"; // D-Day 남음 (파란색)
+        } else if (days === 0) {
+            badge.innerText = "D-Day";
+            badge.style.color = "#ff4d4d"; // 당일 (빨간색)
         } else {
-            alert('단어와 뜻을 모두 입력해주세요!');
+            badge.innerText = `D+${Math.abs(days)}`;
+            badge.style.color = "#666";    // 지남 (회색)
         }
     });
 }
 
-// 4. '단어 삭제' 기능 (Delete Word)
-// window 객체에 등록하여 HTML onclick에서 접근 가능하게 함
-window.deleteWord = function(index) {
-    if (confirm('정말 이 단어를 삭제하시겠습니까?')) {
-        vocabList.splice(index, 1); // 배열에서 해당 인덱스 삭제
-        saveAndRender(); // 저장 및 갱신
-    }
-};
+// 메인 페이지에 D-Day 요소가 있을 때만 실행
+if (document.querySelector('.d-day-container')) {
+    updateDDays();
+}
 
-// 5. '단어 검색' 기능 (Search)
-if (searchBar) {
-    searchBar.addEventListener('input', function(e) {
-        const keyword = e.target.value.toLowerCase(); // 소문자로 변환
 
-        // 검색어가 포함된 단어만 필터링
-        const filteredList = vocabList.filter(item => 
-            item.word.toLowerCase().includes(keyword) || 
-            item.meaning.includes(keyword)
-        );
+/* --- 2. 학습 인터페이스 로직 (상세 학습 페이지용) --- */
 
-        renderVocabList(filteredList); // 필터링된 목록만 보여주기
+// 샘플 데이터 (Day 1)
+const wordData = [
+    { word: "accept", meaning: "받아들이다, 수락하다" },
+    { word: "develop", meaning: "개발하다, 성장하다" },
+    { word: "theory", meaning: "이론, 학설" },
+    { word: "feature", meaning: "특징, 기능" },
+    { word: "structure", meaning: "구조, 조직하다" },
+    { word: "boundary", meaning: "경계, 한계" },
+    { word: "achieve", meaning: "성취하다, 이루다" },
+    { word: "challenge", meaning: "도전, 난제" },
+    { word: "method", meaning: "방법, 방식" },
+    { word: "positive", meaning: "긍정적인" }
+];
+
+let currentIndex = 0; // 현재 보고 있는 단어의 인덱스 (0 ~ 9)
+
+const wordDisplay = document.getElementById('word-display');
+const meaningDisplay = document.getElementById('meaning-display');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const progressText = document.getElementById('progress-text');
+const progressFill = document.getElementById('progress-fill');
+
+// 화면 업데이트 함수
+function updateCard() {
+    if (!wordDisplay) return; // 요소가 없으면 실행 중단 (다른 페이지일 경우)
+
+    const currentWord = wordData[currentIndex];
+    
+    // 텍스트 변경
+    wordDisplay.innerText = currentWord.word;
+    meaningDisplay.innerText = currentWord.meaning;
+    
+    // 진행률 텍스트 업데이트 (예: 1 / 10)
+    progressText.innerText = `${currentIndex + 1} / ${wordData.length}`;
+    
+    // 프로그레스 바 너비 업데이트 (예: 10% -> 20% ...)
+    const percentage = ((currentIndex + 1) / wordData.length) * 100;
+    progressFill.style.width = `${percentage}%`;
+
+    // 버튼 활성화/비활성화 상태 관리
+    prevBtn.disabled = (currentIndex === 0); // 첫 단어면 '이전' 불가
+    nextBtn.disabled = (currentIndex === wordData.length - 1); // 마지막이면 '다음' 불가
+}
+
+// 버튼 클릭 이벤트 리스너
+if (prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCard();
+        }
     });
-}
 
-// 공통: 데이터 저장 및 렌더링 헬퍼 함수
-function saveAndRender() {
-    localStorage.setItem('myVocabList', JSON.stringify(vocabList));
-    renderVocabList(vocabList);
-}
+    nextBtn.addEventListener('click', () => {
+        if (currentIndex < wordData.length - 1) {
+            currentIndex++;
+            updateCard();
+        }
+    });
 
-// 초기 실행: 페이지 로드 시 목록 보여주기
-// (Main Page인 경우에만 실행)
-if (vocabTableBody) {
-    renderVocabList(vocabList);
+    // 초기 실행
+    updateCard();
 }

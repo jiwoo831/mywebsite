@@ -1,362 +1,249 @@
-/* --- 공통 스타일 --- */
-body {
+/* --- 변수 설정 (색상 통일) --- */
+:root {
+    --primary-color: #4da9ff; /* 하늘색 메인 컬러 */
+    --primary-dark: #2980b9;  /* 버튼 호버 등 진한 색 */
+    --bg-color: #f0f4f8;      /* 아주 연한 회색 배경 */
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --gray-text: #666666;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --radius: 20px;           /* 둥근 모서리 */
+}
+
+/* --- 기본 설정 --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background-color: #f4f7f6;
-    margin: 0;
-    padding: 0;
-    color: #333;
-    display: flex;
-    /* footer를 하단에 고정하기 위한 flex */
-    flex-direction: column;
-    /* body의 자식 요소들을 세로로 쌓음 */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
     min-height: 100vh;
-    /* 화면 전체 높이 */
-}
-
-/* --- 시맨틱 태그: Header, Nav, Main, Footer --- */
-header {
-    background-color: #34495e;
-    padding: 10px 0;
-    width: 100%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
 }
 
-nav ul li {
-    margin: 0 15px;
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* --- 1. Sticky Header (상단 고정) --- */
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    position: sticky; /* 스크롤 시 상단 고정 */
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 15px 0;
 }
 
-nav ul li a {
-    text-decoration: none;
-    color: #ecf0f1;
-    font-weight: bold;
-    font-size: 1.1em;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* 로고와 메뉴 양끝 배치 */
+    align-items: center;
+    padding: 0 20px;
 }
 
-nav ul li a:hover,
-nav ul li a.active {
-    background-color: #4a6fa5;
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
 }
 
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    font-weight: 600;
+    color: var(--text-color);
+    transition: color 0.3s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary-color);
+}
+
+/* --- 메인 컨테이너 --- */
 main {
     flex: 1;
-    /* header와 footer를 제외한 모든 공간을 차지 */
-    width: 100%;
-}
-
-.container {
     max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    margin-top: 30px;
-    background-color: #ecf0f1;
-    color: #7f8c8d;
-    border-top: 1px solid #ddd;
     width: 100%;
-}
-
-/* --- 기본 버튼 및 폼 스타일 --- */
-button {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #2980b9;
-}
-
-input[type="text"],
-input[type="search"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-/* --- 페이지 1: Main Page (Flexbox 사용) --- */
-#main-layout {
+    margin: 40px auto;
+    padding: 0 20px;
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    align-items: center;
 }
 
-#vocab-form {
-    flex: 1;
-    /* 1/3 비율 */
-    padding: 20px;
-    background: #fafafa;
-    border-radius: 8px;
-    border: 1px solid #eee;
+/* --- 2. 메인 페이지 (D-Day 카드) --- */
+.hero-title {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 50px;
+    font-weight: 800;
+    text-align: center;
 }
 
-#vocab-list-container {
-    flex: 2;
-    /* 2/3 비율 */
-}
-
-table {
+.d-day-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap; /* 모바일 대응 */
     width: 100%;
-    border-collapse: collapse;
+}
+
+.d-day-card {
+    background: var(--card-bg);
+    width: 280px;
+    height: 280px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.d-day-card:hover {
+    transform: translateY(-5px);
+}
+
+.icon-area {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.exam-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.exam-date {
+    color: var(--gray-text);
+    margin-bottom: 15px;
+}
+
+.d-day-badge {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+/* --- 3. 커리큘럼 페이지 (Grid) --- */
+.curriculum-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* 반응형 그리드 */
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.day-card {
+    background-color: var(--primary-color);
+    color: white;
+    aspect-ratio: 1 / 1; /* 정사각형 비율 유지 */
+    border-radius: var(--radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: var(--shadow);
+}
+
+.day-card:hover {
+    background-color: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+/* --- 4. 상세 학습 페이지 (Study Interface) --- */
+.study-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.card-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 10px;
+    transition: transform 0.2s;
+}
+
+.nav-btn:hover { transform: scale(1.2); }
+.nav-btn:disabled { color: #ccc; cursor: not-allowed; }
+
+.flashcard {
+    background: var(--card-bg);
+    width: 100%;
+    height: 350px;
+    margin: 0 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.word-text { font-size: 3rem; font-weight: bold; margin-bottom: 20px; color: #333; }
+.meaning-text { font-size: 1.5rem; color: var(--gray-text); }
+
+/* 프로그레스 바 */
+.progress-container {
+    width: 100%;
+    text-align: center;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
     margin-top: 10px;
 }
 
-th,
-td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
+.progress-bar-fill {
+    height: 100%;
+    background-color: var(--primary-color);
+    width: 0%; /* JS로 제어 */
+    transition: width 0.3s ease;
 }
 
-th {
-    background-color: #f2f2f2;
-}
-
-/* --- 페이지 2: Today's Learning (Flexbox 사용) --- */
-#learning-layout {
-    display: flex;
-    gap: 20px;
-}
-
-/* ▼▼▼ [수정됨] #flashcard 스타일 ▼▼▼ */
-#flashcard {
-    flex: 3;
-    display: flex;
-    flex-direction: column;
-    /* 세로로 쌓기 */
-    justify-content: center;
-    align-items: center;
-    min-height: 300px;
-    border: 2px solid #3498db;
-    border-radius: 10px;
-    background: #f0f8ff;
-}
-
-/* ▼▼▼ [새로 추가됨] 플래시카드 단어/뜻 스타일 ▼▼▼ */
-.flashcard-word {
-    font-size: 3em;
-    font-weight: bold;
-    color: #2c3e50;
-    margin-bottom: 10px;
-    /* 단어와 뜻 사이 간격 */
-}
-
-.flashcard-meaning {
-    font-size: 1.5em;
-    /* 단어보다 작게 */
-    color: #888;
-    /* 회색 글씨로 */
-}
-
-#progress-list {
-    flex: 1;
-    border-left: 1px solid #ddd;
-    padding-left: 20px;
-}
-
-#progress-list ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-#progress-list li {
-    padding: 8px;
-    background: #eee;
-    margin-bottom: 5px;
-    border-radius: 4px;
-}
-
-.learning-buttons {
-    margin-top: 20px;
+/* --- Footer --- */
+footer {
+    background-color: #333;
+    color: white;
     text-align: center;
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-}
-
-/* --- 페이지 3: O/X Test (Flexbox 사용) --- */
-#test-container {
-    text-align: center;
-}
-
-#test-header {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-#timer {
-    color: #e74c3c;
-}
-
-#quiz-content {
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 40px;
-    border-radius: 8px;
-    margin-bottom: 30px;
-}
-
-#quiz-content h2 {
-    font-size: 2.5em;
-    margin: 0;
-}
-
-#quiz-content p {
-    font-size: 1.5em;
-    color: #555;
-}
-
-#ox-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-}
-
-.ox-btn {
-    font-size: 4em;
-    font-weight: bold;
-    padding: 30px 60px;
-    border-radius: 10px;
-}
-
-#btn-o {
-    background-color: #2ecc71;
-    /* Green */
-}
-
-#btn-o:hover {
-    background-color: #27ae60;
-}
-
-#btn-x {
-    background-color: #e74c3c;
-    /* Red */
-}
-
-#btn-x:hover {
-    background-color: #c0392b;
-}
-
-/* --- 페이지 4: Statistics --- */
-#stats-container {
-    display: flex;
-    gap: 20px;
-}
-
-#calendar-container {
-    flex: 2;
-}
-
-#charts-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.chart {
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 8px;
-    background: #fdfdfd;
-}
-
-/* (가짜) 캘린더 스타일 */
-#calendar {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
-}
-
-#calendar th {
-    background: #f0f0f0;
-    padding: 10px;
-}
-
-#calendar td {
-    padding: 20px 10px;
-    border: 1px solid #eee;
-    vertical-align: top;
-    height: 60px;
-}
-
-.learned {
-    background-color: #d4edda;
-    /* Light green */
-    color: #155724;
-    font-weight: bold;
-}
-
-.learned::after {
-    content: " ✔️";
-    /* Checkmark */
-}
-
-/* (가짜) 바 차트 스타일 */
-.bar-chart {
-    display: flex;
-    gap: 10px;
-    align-items: flex-end;
-    /* 막대가 아래에서 시작 */
-    height: 150px;
-    padding: 10px;
-    border-top: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-}
-
-.bar {
-    flex: 1;
-    background-color: #3498db;
-    width: 100%;
-}
-
-/* --- 반응형 디자인 (모바일/데스크톱) --- */
-@media (max-width: 768px) {
-
-    /* 모바일 화면에서 Flex 레이아웃을 세로로 쌓음 */
-    #main-layout,
-    #learning-layout,
-    #stats-container {
-        /* 통계 페이지도 세로로 쌓이도록 추가 */
-        flex-direction: column;
-    }
-
-    /* O/X 버튼도 세로로 쌓음 */
-    #ox-buttons {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .ox-btn {
-        font-size: 2.5em;
-        /* 모바일에서 버튼 폰트 크기 줄임 */
-        padding: 20px;
-    }
+    padding: 20px;
+    margin-top: auto;
+    font-size: 0.9rem;
 }

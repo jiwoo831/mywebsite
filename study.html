@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study - Daily 10 Words</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html">DAILY 10 WORDS</a></div>
+            <div class="nav-links">
+                <a href="curriculum.html" class="active">오늘의 학습</a>
+                <a href="#">O/X 퀴즈</a>
+                <a href="#">통계</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h2 style="margin-bottom: 20px;">Day 1 학습</h2>
+
+        <section class="study-container">
+            <div class="card-area">
+                <button class="nav-btn" id="prev-btn">❮</button>
+                
+                <div class="flashcard">
+                    <div class="word-text" id="word-display">Loading...</div>
+                    <div class="meaning-text" id="meaning-display"></div>
+                </div>
+
+                <button class="nav-btn" id="next-btn">❯</button>
+            </div>
+
+            <div class="progress-container">
+                <span id="progress-text">1 / 10</span>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progress-fill"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Daily 10 Words. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
