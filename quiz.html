@@ -3,110 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study - Daily 10 Words</title>
+    <title>O/X Quiz - Daily 10 Words</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- 헤더 (메인과 동일) -->
     <header>
         <div class="logo"><a href="index.html">Daily 10 Words</a></div>
         <nav>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="index.html">Home</a></li>
-                <li class="nav-item"><a href="study.html" style="color: var(--accent-blue);">오늘의 학습</a></li>
+                <li class="nav-item"><a href="study.html">오늘의 학습</a></li>
                 <li class="nav-item"><a href="schedule.html">주요 시험 일정</a></li>
-                <li class="nav-item"><a href="quiz.html">O/X 퀴즈</a></li>
+                <li class="nav-item"><a href="quiz.html" style="color: var(--accent-blue);">O/X 퀴즈</a></li>
                 <li class="nav-item"><a href="#">통계</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="sub-page-padding">
-        <!-- [VIEW 1] 빙하 그리드 -->
-        <section id="home-view" class="view-section">
-            <h1 class="about-title reveal" style="text-align:center;">오늘의 학습을 선택하세요</h1>
+        
+        <section id="quiz-home-view" class="view-section">
+            <h1 class="about-title reveal" style="text-align:center;">O/X 퀴즈를 선택하세요</h1>
             
             <div class="grid-container reveal">
-                <!-- Day 1 ~ 12 -->
-                <div class="day-item" onclick="startStudy(1)">
+                <div class="day-item" onclick="openQuizModal(1)">
                     <div class="iceberg-shape shape-1"><span class="day-num">Day 1</span></div>
                     <div class="day-label">Start</div>
                 </div>
-                <div class="day-item" onclick="startStudy(2)">
+                <div class="day-item" onclick="openQuizModal(2)">
                     <div class="iceberg-shape shape-2"><span class="day-num">Day 2</span></div>
                     <div class="day-label">Basic</div>
                 </div>
-                <div class="day-item" onclick="startStudy(3)">
+                <div class="day-item" onclick="openQuizModal(3)">
                     <div class="iceberg-shape shape-3"><span class="day-num">Day 3</span></div>
                     <div class="day-label">Focus</div>
                 </div>
-                <div class="day-item" onclick="startStudy(4)">
+                <div class="day-item" onclick="openQuizModal(4)">
                     <div class="iceberg-shape shape-1"><span class="day-num">Day 4</span></div>
                     <div class="day-label">Review</div>
                 </div>
-                <!-- (반복 생략 가능하나 요청에 따라 12개 채움) -->
-                <div class="day-item" onclick="startStudy(5)">
+                <div class="day-item" onclick="openQuizModal(5)">
                     <div class="iceberg-shape shape-2"><span class="day-num">Day 5</span></div>
                     <div class="day-label">Challenge</div>
                 </div>
-                <div class="day-item" onclick="startStudy(6)">
+                <div class="day-item" onclick="openQuizModal(6)">
                     <div class="iceberg-shape shape-3"><span class="day-num">Day 6</span></div>
                     <div class="day-label">Halfway</div>
                 </div>
-                <div class="day-item" onclick="startStudy(7)">
+                <div class="day-item" onclick="openQuizModal(7)">
                     <div class="iceberg-shape shape-1"><span class="day-num">Day 7</span></div>
                     <div class="day-label">Steady</div>
                 </div>
-                <div class="day-item" onclick="startStudy(8)">
+                <div class="day-item" onclick="openQuizModal(8)">
                     <div class="iceberg-shape shape-2"><span class="day-num">Day 8</span></div>
                     <div class="day-label">Advanced</div>
                 </div>
-                <div class="day-item" onclick="startStudy(9)">
+                <div class="day-item" onclick="openQuizModal(9)">
                     <div class="iceberg-shape shape-3"><span class="day-num">Day 9</span></div>
                     <div class="day-label">Deep</div>
                 </div>
-                <div class="day-item" onclick="startStudy(10)">
+                <div class="day-item" onclick="openQuizModal(10)">
                     <div class="iceberg-shape shape-1"><span class="day-num">Day 10</span></div>
                     <div class="day-label">Master</div>
                 </div>
-                <div class="day-item" onclick="startStudy(11)">
+                <div class="day-item" onclick="openQuizModal(11)">
                     <div class="iceberg-shape shape-2"><span class="day-num">Day 11</span></div>
                     <div class="day-label">Expert</div>
                 </div>
-                <div class="day-item" onclick="startStudy(12)">
+                <div class="day-item" onclick="openQuizModal(12)">
                     <div class="iceberg-shape shape-3"><span class="day-num">Day 12</span></div>
                     <div class="day-label">Final</div>
                 </div>
             </div>
         </section>
 
-        <!-- [VIEW 2] 상세 학습 (클릭 시 등장) -->
-        <section id="study-view" class="view-section hidden">
-            <div class="study-header">
-                <button class="back-btn" onclick="showHome()">❮ 목록으로</button>
-                <h2 style="font-size:1.8rem;" id="study-title">Day 1 학습</h2>
+        <section id="quiz-game-view" class="view-section hidden" style="display: none;">
+            <div class="quiz-header">
+                <button class="back-btn" onclick="quitQuiz()">❮ 그만하기</button>
+                <h2 id="quiz-day-title">Day 1 퀴즈</h2>
             </div>
 
-            <div class="study-card-container">
-                <button class="nav-btn" id="card-prev"><i class="fas fa-chevron-left"></i></button>
-                <div class="flashcard">
-                    <div class="word-content">
-                        <div class="word-text" id="word-display">Loading...</div>
-                        <div class="meaning-text" id="meaning-display"></div>
-                    </div>
-                </div>
-                <button class="nav-btn" id="card-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="timer-container">
+                <div class="timer-bar" id="timer-bar"></div>
             </div>
 
-            <div class="progress-area">
-                <div class="progress-text" id="progress-text">1 / 10</div>
-                <div class="progress-bg">
-                    <div class="progress-fill" id="progress-fill"></div>
-                </div>
+            <div class="question-card">
+                <div class="q-word" id="q-word">Apple</div>
+                <div class="q-divider">Is this meaning correct?</div>
+                <div class="q-meaning" id="q-meaning">사과</div>
             </div>
+
+            <div class="ox-buttons">
+                <button class="btn-ox btn-o" onclick="checkAnswer(true)">
+                    <i class="far fa-circle"></i>
+                </button>
+                <button class="btn-ox btn-x" onclick="checkAnswer(false)">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="score-display" id="score-display">Score: 0 / 10</div>
         </section>
+
     </main>
+
+    <div id="startModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h3>O/X 퀴즈를 시작합니다!</h3>
+            <p>한 문제당 <strong style="color:red;">5초</strong>의 제한 시간이 있습니다.<br>준비되셨나요?</p>
+            <div class="modal-buttons">
+                <button class="btn-cancel" onclick="closeQuizModal()">취소</button>
+                <button class="btn-start" onclick="startQuizGame()">확인 (시작)</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="resultModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h3>퀴즈 종료!</h3>
+            <p>당신의 점수는?</p>
+            <h1 id="final-score" style="color: var(--accent-blue); font-size: 3rem; margin: 10px 0;">80</h1>
+            <div class="modal-buttons">
+                <button class="btn-start" onclick="location.reload()">목록으로</button>
+            </div>
+        </div>
+    </div>
 
     <footer class="footer">
         <div class="footer-content">
@@ -122,5 +144,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="quiz.js"></script>
 </body>
 </html>
