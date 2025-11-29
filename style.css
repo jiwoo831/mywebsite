@@ -200,7 +200,7 @@ header {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* PC: 4개 */
-    gap: 30px;
+    gap: 40px;
     width: 100%;
     padding: 0 20px;
     margin-top: 40px;
@@ -219,7 +219,12 @@ header {
 /* 빙하 모양 & 애니메이션 */
 .iceberg-shape {
     width: 100%;
-    height: 220px;
+    max-width: 340px;
+
+    height: 280px;
+
+    margin: 0 auto 15px;
+
     background: linear-gradient(180deg, #ffffff 0%, var(--primary-light) 100%);
     border: 3px solid #e1efff;
     box-shadow: var(--card-shadow);
@@ -228,6 +233,12 @@ header {
     justify-content: center;
     margin-bottom: 15px;
     animation: float 4s ease-in-out infinite;
+}
+
+.container, 
+.view-section {
+    max-width: 1600px !important; /* !important로 강제 적용 */
+    width: 95% !important; /* 모바일에서도 꽉 차게 */
 }
 
 /* 둥둥 떠다니는 애니메이션 */
