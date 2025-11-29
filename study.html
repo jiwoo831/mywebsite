@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Study - Daily 10 Words</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
         <nav>
             <div class="logo"><a href="index.html">DAILY 10 WORDS</a></div>
             <div class="nav-links">
-                <a href="curriculum.html" class="active">오늘의 학습</a>
+                <a href="index.html">Home</a>
+                <a href="study.html" class="active">학습하기</a>
+                <a href="schedule.html">시험 일정</a>
                 <a href="#">O/X 퀴즈</a>
                 <a href="#">통계</a>
             </div>
@@ -19,24 +22,85 @@
     </header>
 
     <main>
-        <h2 style="margin-bottom: 20px;">Day 1 학습</h2>
-
-        <section class="study-container">
-            <div class="card-area">
-                <button class="nav-btn" id="prev-btn">❮</button>
-                
-                <div class="flashcard">
-                    <div class="word-text" id="word-display">Loading...</div>
-                    <div class="meaning-text" id="meaning-display"></div>
+        <!-- [VIEW 1] 빙하 그리드 (Day 선택 화면) -->
+        <section id="home-view" class="view-section">
+            <h1 class="page-title">오늘의 학습을 선택하세요</h1>
+            
+            <div class="grid-container">
+                <!-- Day 1 ~ 12 아이템들 -->
+                <div class="day-item" onclick="startStudy(1)">
+                    <div class="iceberg-shape shape-1"><span class="day-num">Day 1</span></div>
+                    <div class="day-label">Start</div>
                 </div>
+                <div class="day-item" onclick="startStudy(2)">
+                    <div class="iceberg-shape shape-2"><span class="day-num">Day 2</span></div>
+                    <div class="day-label">Basic</div>
+                </div>
+                <div class="day-item" onclick="startStudy(3)">
+                    <div class="iceberg-shape shape-3"><span class="day-num">Day 3</span></div>
+                    <div class="day-label">Focus</div>
+                </div>
+                <div class="day-item" onclick="startStudy(4)">
+                    <div class="iceberg-shape shape-1"><span class="day-num">Day 4</span></div>
+                    <div class="day-label">Review</div>
+                </div>
+                <div class="day-item" onclick="startStudy(5)">
+                    <div class="iceberg-shape shape-2"><span class="day-num">Day 5</span></div>
+                    <div class="day-label">Challenge</div>
+                </div>
+                <div class="day-item" onclick="startStudy(6)">
+                    <div class="iceberg-shape shape-3"><span class="day-num">Day 6</span></div>
+                    <div class="day-label">Halfway</div>
+                </div>
+                <div class="day-item" onclick="startStudy(7)">
+                    <div class="iceberg-shape shape-1"><span class="day-num">Day 7</span></div>
+                    <div class="day-label">Steady</div>
+                </div>
+                <div class="day-item" onclick="startStudy(8)">
+                    <div class="iceberg-shape shape-2"><span class="day-num">Day 8</span></div>
+                    <div class="day-label">Advanced</div>
+                </div>
+                <div class="day-item" onclick="startStudy(9)">
+                    <div class="iceberg-shape shape-3"><span class="day-num">Day 9</span></div>
+                    <div class="day-label">Deep</div>
+                </div>
+                <div class="day-item" onclick="startStudy(10)">
+                    <div class="iceberg-shape shape-1"><span class="day-num">Day 10</span></div>
+                    <div class="day-label">Master</div>
+                </div>
+                <div class="day-item" onclick="startStudy(11)">
+                    <div class="iceberg-shape shape-2"><span class="day-num">Day 11</span></div>
+                    <div class="day-label">Expert</div>
+                </div>
+                <div class="day-item" onclick="startStudy(12)">
+                    <div class="iceberg-shape shape-3"><span class="day-num">Day 12</span></div>
+                    <div class="day-label">Final</div>
+                </div>
+            </div>
+        </section>
 
-                <button class="nav-btn" id="next-btn">❯</button>
+        <!-- [VIEW 2] 상세 학습 화면 -->
+        <section id="study-view" class="view-section hidden">
+            <div class="study-header">
+                <button class="back-btn" onclick="showHome()">❮ 목록으로</button>
+                <h2 id="study-title">Day 1 학습</h2>
             </div>
 
-            <div class="progress-container">
-                <span id="progress-text">1 / 10</span>
-                <div class="progress-bar-bg">
-                    <div class="progress-bar-fill" id="progress-fill"></div>
+            <div class="study-card-container">
+                <button class="nav-btn" id="card-prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="flashcard">
+                    <div class="word-content">
+                        <div class="word-text" id="word-display">Loading...</div>
+                        <div class="meaning-text" id="meaning-display"></div>
+                    </div>
+                </div>
+                <button class="nav-btn" id="card-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <div class="progress-area">
+                <div class="progress-text" id="progress-text">1 / 10</div>
+                <div class="progress-bg">
+                    <div class="progress-fill" id="progress-fill"></div>
                 </div>
             </div>
         </section>
@@ -46,6 +110,7 @@
         <p>&copy; 2025 Daily 10 Words. All rights reserved.</p>
     </footer>
 
+    <!-- 자바스크립트 연결 필수! -->
     <script src="script.js"></script>
 </body>
 </html>

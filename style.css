@@ -1,249 +1,168 @@
-/* --- 변수 설정 (색상 통일) --- */
+/* --- 변수 및 기본 설정 --- */
 :root {
-    --primary-color: #4da9ff; /* 하늘색 메인 컬러 */
-    --primary-dark: #2980b9;  /* 버튼 호버 등 진한 색 */
-    --bg-color: #f0f4f8;      /* 아주 연한 회색 배경 */
-    --card-bg: #ffffff;
-    --text-color: #333333;
-    --gray-text: #666666;
-    --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    --radius: 20px;           /* 둥근 모서리 */
+    --primary-color: #4da9ff;
+    --primary-light: #d6ebff;
+    --bg-color: #f0f4f8; 
+    --text-color: #333;
+    --card-shadow: 0 8px 20px rgba(77, 169, 255, 0.15);
 }
 
-/* --- 기본 설정 --- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-
-body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, sans-serif; }
+body { background-color: var(--bg-color); color: var(--text-color); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
 a { text-decoration: none; color: inherit; }
-ul { list-style: none; }
+button { border: none; cursor: pointer; }
 
-/* --- 1. Sticky Header (상단 고정) --- */
-header {
-    background-color: rgba(255, 255, 255, 0.95);
-    position: sticky; /* 스크롤 시 상단 고정 */
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    padding: 15px 0;
-}
+/* --- Header --- */
+header { background: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+nav { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 30px; }
+.logo a { font-size: 1.5rem; font-weight: 800; color: var(--primary-color); }
+.nav-links { display: flex; gap: 30px; }
+.nav-links a { font-weight: 600; color: #555; transition: 0.3s; }
+.nav-links a:hover, .nav-links a.active { color: var(--primary-color); }
 
-nav {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between; /* 로고와 메뉴 양끝 배치 */
-    align-items: center;
-    padding: 0 20px;
-}
+/* --- Main Layout --- */
+main { flex: 1; width: 100%; display: flex; flex-direction: column; align-items: center; padding: 40px 0; }
+.view-section { width: 100%; max-width: 1200px; display: flex; flex-direction: column; align-items: center; padding: 0 20px; }
+.page-title { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 40px; font-weight: 800; text-align: center; }
+.hidden { display: none !important; }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--primary-color);
-}
-
-.nav-links {
-    display: flex;
+/* =========================================
+   [메인] 빙하 Grid Layout
+   ========================================= */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* PC: 4열 */
     gap: 30px;
-}
-
-.nav-links a {
-    font-weight: 600;
-    color: var(--text-color);
-    transition: color 0.3s;
-}
-
-.nav-links a:hover, .nav-links a.active {
-    color: var(--primary-color);
-}
-
-/* --- 메인 컨테이너 --- */
-main {
-    flex: 1;
-    max-width: 1200px;
     width: 100%;
-    margin: 40px auto;
-    padding: 0 20px;
+    margin-bottom: 50px;
+}
+
+.day-item {
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.day-item:hover { transform: translateY(-10px); }
+
+.iceberg-shape {
+    width: 100%;
+    height: 220px; 
+    background: linear-gradient(180deg, #ffffff 0%, var(--primary-light) 100%);
+    border: 3px solid #e1efff;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    animation: float 4s ease-in-out infinite;
 }
 
-/* --- 2. 메인 페이지 (D-Day 카드) --- */
-.hero-title {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 50px;
-    font-weight: 800;
-    text-align: center;
+.shape-1 { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; animation-delay: 0s; }
+.shape-2 { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; animation-delay: 1.2s; }
+.shape-3 { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; animation-delay: 2.5s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
+.day-num { font-size: 1.8rem; font-weight: 900; color: var(--primary-color); }
+.day-label { font-size: 1rem; color: #666; font-weight: 600; }
+
+/* 반응형 미디어 쿼리 */
+@media (max-width: 1024px) {
+    .grid-container { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+@media (max-width: 600px) {
+    .grid-container { grid-template-columns: 1fr; }
+    .iceberg-shape { height: 200px; }
+    .nav-links { display: none; }
+    .flashcard { width: 100%; height: 350px; }
+    .word-text { font-size: 2.5rem; }
+}
+
+/* =========================================
+   [시험 일정 페이지 디자인] (아이콘 스타일 복구)
+   ========================================= */
 .d-day-container {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap; /* 모바일 대응 */
+    gap: 40px;
+    flex-wrap: wrap;
     width: 100%;
+    max-width: 1200px;
 }
 
 .d-day-card {
-    background: var(--card-bg);
-    width: 280px;
-    height: 280px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    background: white;
+    width: 300px;
+    height: 300px;
+    border-radius: 40px; /* 둥근 사각형 */
+    box-shadow: var(--card-shadow);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s;
+    border: 1px solid #eef6ff;
 }
 
 .d-day-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
+    border-color: var(--primary-color);
 }
 
-.icon-area {
-    font-size: 3rem;
+/* 아이콘 크기 확실하게 지정 */
+.icon-area { 
+    font-size: 4rem; /* 아이콘 크기 대폭 확대 */
     margin-bottom: 20px;
+    line-height: 1; /* 줄 높이 초기화 */
+}
+
+.exam-name { font-size: 1.8rem; font-weight: 800; margin-bottom: 10px; color: #333; }
+.exam-date { color: #888; margin-bottom: 20px; font-weight: 500; }
+.d-day-badge { 
+    font-size: 1.6rem; 
+    font-weight: 900; 
     color: var(--primary-color);
+    background: #f0f8ff;
+    padding: 8px 20px;
+    border-radius: 20px;
 }
 
-.exam-name {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+/* =========================================
+   [상세 학습 페이지 UI]
+   ========================================= */
+.study-header { width: 100%; display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 30px; }
+.back-btn { position: absolute; left: 0; background: none; font-size: 1rem; color: #666; font-weight: bold; }
+.back-btn:hover { color: var(--primary-color); }
+#study-title { font-size: 1.8rem; color: #333; }
 
-.exam-date {
-    color: var(--gray-text);
-    margin-bottom: 15px;
-}
-
-.d-day-badge {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--primary-color);
-}
-
-/* --- 3. 커리큘럼 페이지 (Grid) --- */
-.curriculum-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* 반응형 그리드 */
-    gap: 20px;
-    width: 100%;
-    max-width: 800px;
-}
-
-.day-card {
-    background-color: var(--primary-color);
-    color: white;
-    aspect-ratio: 1 / 1; /* 정사각형 비율 유지 */
-    border-radius: var(--radius);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: var(--shadow);
-}
-
-.day-card:hover {
-    background-color: var(--primary-dark);
-    transform: scale(1.05);
-}
-
-/* --- 4. 상세 학습 페이지 (Study Interface) --- */
-.study-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 600px;
-}
-
-.card-area {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 30px;
-}
-
-.nav-btn {
-    background: none;
-    border: none;
-    font-size: 2rem;
-    color: var(--primary-color);
-    cursor: pointer;
-    padding: 10px;
-    transition: transform 0.2s;
-}
-
-.nav-btn:hover { transform: scale(1.2); }
-.nav-btn:disabled { color: #ccc; cursor: not-allowed; }
+.study-card-container { display: flex; align-items: center; justify-content: center; gap: 20px; width: 100%; }
 
 .flashcard {
-    background: var(--card-bg);
-    width: 100%;
-    height: 350px;
-    margin: 0 20px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    width: 600px;
+    height: 400px;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
     text-align: center;
+    border: 1px solid #eee;
 }
+.word-text { font-size: 4rem; font-weight: 800; color: #333; margin-bottom: 15px; }
+.meaning-text { font-size: 1.8rem; color: #777; font-weight: 500; }
+.nav-btn { background: none; font-size: 3rem; color: var(--primary-color); transition: 0.2s; }
+.nav-btn:hover { transform: scale(1.1); }
+.nav-btn:disabled { color: #ddd; transform: none; cursor: default; }
 
-.word-text { font-size: 3rem; font-weight: bold; margin-bottom: 20px; color: #333; }
-.meaning-text { font-size: 1.5rem; color: var(--gray-text); }
+.progress-area { width: 100%; max-width: 600px; margin-top: 30px; text-align: center; }
+.progress-bg { width: 100%; height: 8px; background: #e0e0e0; border-radius: 10px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--primary-color); width: 0%; transition: width 0.3s; }
 
-/* 프로그레스 바 */
-.progress-container {
-    width: 100%;
-    text-align: center;
-}
-
-.progress-bar-bg {
-    width: 100%;
-    height: 10px;
-    background-color: #e0e0e0;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-top: 10px;
-}
-
-.progress-bar-fill {
-    height: 100%;
-    background-color: var(--primary-color);
-    width: 0%; /* JS로 제어 */
-    transition: width 0.3s ease;
-}
-
-/* --- Footer --- */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: auto;
-    font-size: 0.9rem;
-}
+footer { text-align: center; padding: 20px; color: #888; margin-top: auto; }

@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily 10 Words</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
         <nav>
+            <!-- 로고 클릭 시 메인(index.html)으로 이동 -->
             <div class="logo"><a href="index.html">DAILY 10 WORDS</a></div>
             <div class="nav-links">
-                <a href="curriculum.html">오늘의 학습</a>
+                <a href="index.html" class="active">Home</a>
+                <!-- 학습하기 클릭 시 study.html로 이동 -->
+                <a href="study.html">학습하기</a>
+                <a href="schedule.html">시험 일정</a>
                 <a href="#">O/X 퀴즈</a>
                 <a href="#">통계</a>
             </div>
@@ -19,28 +24,47 @@
     </header>
 
     <main>
-        <h1 class="hero-title">DAILY 10 WORDS</h1>
-        
-        <section class="d-day-container">
-            <div class="d-day-card">
-                <div class="icon-area">📅</div>
-                <div class="exam-name">수능</div>
-                <div class="exam-date" data-date="2025-11-13">2025.11.13</div>
-                <div class="d-day-badge" id="d-day-suneung">D-Day</div>
+        <!-- 현재 메인 콘텐츠는 비워둠 (추후 콘텐츠 추가 예정) -->
+        <section class="view-section">
+            <h2 style="color: #ccc; margin-top: 100px;">메인 페이지 준비 중...</h2>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Daily 10 Words. All rights reserved.</p>
+    </footer>
+
+    <!-- 스크립트 연결 (네비게이션 동작 등을 위해 유지) -->
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+        <!-- [VIEW 2] 상세 학습 화면 (이전과 동일) -->
+        <section id="study-view" class="view-section hidden">
+            <div class="study-header">
+                <button class="back-btn" onclick="showHome()">❮ 목록으로</button>
+                <h2 id="study-title">Day 1 학습</h2>
             </div>
 
-            <div class="d-day-card">
-                <div class="icon-area">📝</div>
-                <div class="exam-name">토익</div>
-                <div class="exam-date" data-date="2025-03-16">2025.03.16</div>
-                <div class="d-day-badge" id="d-day-toeic">D-Day</div>
+            <div class="study-card-container">
+                <button class="nav-btn" id="card-prev"><i class="fas fa-chevron-left"></i></button>
+
+                <div class="flashcard">
+                    <div class="word-content">
+                        <div class="word-text" id="word-display">Loading...</div>
+                        <div class="meaning-text" id="meaning-display"></div>
+                    </div>
+                </div>
+
+                <button class="nav-btn" id="card-next"><i class="fas fa-chevron-right"></i></button>
             </div>
 
-            <div class="d-day-card">
-                <div class="icon-area">🗣️</div>
-                <div class="exam-name">오픽</div>
-                <div class="exam-date">상시 접수</div>
-                <div class="d-day-badge">접수중</div>
+            <div class="progress-area">
+                <div class="progress-text" id="progress-text">1 / 10</div>
+                <div class="progress-bg">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
             </div>
         </section>
     </main>
