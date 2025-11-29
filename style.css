@@ -1,42 +1,212 @@
-/* --- 변수 및 기본 설정 --- */
+/* ==========================================================================
+   PART A: 메인 페이지 디자인 (확정된 코드 - 유지)
+   ========================================================================== */
+/* --- 1. 기본 설정 (Reset & Base) --- */
 :root {
-    --primary-color: #4da9ff;
-    --primary-light: #d6ebff;
-    --bg-color: #f0f4f8; 
-    --text-color: #333;
+    --primary-black: #121212;
+    --primary-gray: #6e6e6e;
+    --light-gray: #f2f2f2;
+    --bg-white: #ffffff;
+    --bg-light: #f8f9fa;
+    --accent-blue: #2196f3; /* 삼성 블루 느낌의 포인트 컬러 */
+    --glass-border: rgba(255, 255, 255, 0.6);
+    
+    /* [Part B를 위한 변수 추가] */
+    --primary-light: #d6ebff; /* 빙하용 연한 파랑 */
     --card-shadow: 0 8px 20px rgba(77, 169, 255, 0.15);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, sans-serif; }
-body { background-color: var(--bg-color); color: var(--text-color); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
-a { text-decoration: none; color: inherit; }
-button { border: none; cursor: pointer; }
-
-/* --- Header --- */
-header { background: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
-nav { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 30px; }
-.logo a { font-size: 1.5rem; font-weight: 800; color: var(--primary-color); }
-.nav-links { display: flex; gap: 30px; }
-.nav-links a { font-weight: 600; color: #555; transition: 0.3s; }
-.nav-links a:hover, .nav-links a.active { color: var(--primary-color); }
-
-/* --- Main Layout --- */
-main { flex: 1; width: 100%; display: flex; flex-direction: column; align-items: center; padding: 40px 0; }
-.view-section { width: 100%; max-width: 1200px; display: flex; flex-direction: column; align-items: center; padding: 0 20px; }
-.page-title { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 40px; font-weight: 800; text-align: center; }
-.hidden { display: none !important; }
-
-/* =========================================
-   [메인] 빙하 Grid Layout
-   ========================================= */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* PC: 4열 */
-    gap: 30px;
-    width: 100%;
-    margin-bottom: 50px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
+body {
+    background-color: var(--bg-white);
+    color: var(--primary-black);
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* --- 2. 애니메이션 클래스 (Scroll Reveal) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- 3. 헤더 --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 40px;
+    height: 80px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-weight: 900;
+    font-size: 1.3rem;
+    letter-spacing: -0.5px;
+    cursor: pointer;
+}
+
+.nav-menu { display: flex; gap: 40px; }
+.nav-item a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--primary-black);
+    transition: color 0.2s ease;
+}
+.nav-item a:hover { color: var(--accent-blue); }
+
+/* --- 4. 히어로 섹션 --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 10% 0;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(circle at 80% 50%, #f0f8ff 0%, #ffffff 60%);
+}
+
+.hero-text { flex: 1; z-index: 2; max-width: 600px; }
+.hero-title {
+    font-size: 4.5rem; font-weight: 900; line-height: 1.1;
+    margin-bottom: 24px; letter-spacing: -2px; color: var(--primary-black);
+}
+.hero-title span { color: var(--accent-blue); display: block; }
+.hero-desc {
+    font-size: 1.2rem; color: var(--primary-gray); font-weight: 400;
+    margin-bottom: 50px; line-height: 1.6; word-break: keep-all;
+}
+
+.btn-start {
+    display: inline-block; padding: 16px 40px; background-color: var(--primary-black);
+    color: #fff; border-radius: 50px; font-size: 1rem; font-weight: 700;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.btn-start:hover {
+    transform: translateY(-3px); background-color: #333;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* --- 5. 히어로 비주얼 --- */
+.hero-visual { flex: 1; height: 100%; position: relative; display: flex; justify-content: center; align-items: center; }
+.glacier-art {
+    position: absolute; width: 400px; height: 500px; right: -50px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(200, 230, 255, 0.1) 100%);
+    backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.8);
+    box-shadow: 0 20px 50px rgba(176, 224, 230, 0.3);
+    clip-path: polygon(50% 0%, 100% 25%, 85% 100%, 15% 90%, 0% 30%);
+    animation: float 6s ease-in-out infinite;
+}
+.glacier-art::after {
+    content: ''; position: absolute; top: 20%; left: 20%; width: 60%; height: 60%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.1) 100%);
+    clip-path: polygon(20% 0%, 100% 40%, 70% 100%, 0% 80%); backdrop-filter: blur(5px);
+}
+
+/* --- 6. 소개 섹션 --- */
+.section-about { padding: 120px 10%; background-color: var(--bg-white); text-align: center; }
+.about-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 30px; letter-spacing: -1px; }
+.about-text { font-size: 1.1rem; color: var(--primary-gray); line-height: 1.8; max-width: 800px; margin: 0 auto; word-break: keep-all; }
+
+/* --- 7. 기능 소개 섹션 --- */
+.section-features { padding: 100px 10%; background-color: var(--bg-light); }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 60px; }
+.feature-card {
+    background: #fff; padding: 40px; border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; text-align: left; border: 1px solid transparent; display: block;
+}
+.feature-card:hover {
+    transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    border-color: rgba(33, 150, 243, 0.1);
+}
+.icon-box {
+    width: 60px; height: 60px; background-color: #f0f7ff; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center; margin-bottom: 24px;
+    font-size: 1.5rem; color: var(--accent-blue);
+}
+.card-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; color: var(--primary-black); }
+.card-desc { font-size: 0.95rem; color: var(--primary-gray); line-height: 1.5; }
+
+/* --- 8. 푸터 --- */
+.footer {
+    background-color: #f8f9fa; border-top: 1px solid #e1e1e1;
+    padding: 60px 10%; margin-top: auto;
+}
+.footer-content { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; }
+.footer-logo { font-weight: 900; font-size: 1.1rem; margin-bottom: 10px; color: #333; }
+.footer-desc { color: #888; font-size: 0.9rem; line-height: 1.6; max-width: 300px; }
+.footer-links { display: flex; gap: 30px; }
+.footer-links a { color: #666; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+.footer-links a:hover { color: var(--accent-blue); }
+.copyright { margin-top: 40px; padding-top: 20px; border-top: 1px solid #eaeaea; text-align: center; color: #999; font-size: 0.8rem; }
+
+/* --- 반응형 (메인) --- */
+@media (max-width: 768px) {
+    header { padding: 0 20px; }
+    .nav-menu { display: none; }
+    .hero { flex-direction: column; justify-content: center; text-align: center; padding-top: 100px; }
+    .hero-title { font-size: 2.8rem; }
+    .hero-visual { display: none; }
+    .features-grid { grid-template-columns: 1fr; }
+    .footer-content { flex-direction: column; align-items: center; text-align: center; }
+}
+
+
+/* ==========================================================================
+   PART B: 서브 페이지 스타일 (빙하 그리드 & D-Day 추가)
+   ========================================================================== */
+
+/* 서브 페이지 상단 여백 (헤더가 fixed라서 필요) */
+.sub-page-padding {
+    padding-top: 120px;
+    padding-bottom: 80px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 빙하 그리드 컨테이너 (반응형 4열) */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* PC: 4개 */
+    gap: 30px;
+    width: 100%;
+    padding: 0 20px;
+    margin-top: 40px;
+}
+
+/* 빙하 아이템 */
 .day-item {
     display: flex;
     flex-direction: column;
@@ -46,9 +216,10 @@ main { flex: 1; width: 100%; display: flex; flex-direction: column; align-items:
 }
 .day-item:hover { transform: translateY(-10px); }
 
+/* 빙하 모양 & 애니메이션 */
 .iceberg-shape {
     width: 100%;
-    height: 220px; 
+    height: 220px;
     background: linear-gradient(180deg, #ffffff 0%, var(--primary-light) 100%);
     border: 3px solid #e1efff;
     box-shadow: var(--card-shadow);
@@ -59,110 +230,72 @@ main { flex: 1; width: 100%; display: flex; flex-direction: column; align-items:
     animation: float 4s ease-in-out infinite;
 }
 
+/* 둥둥 떠다니는 애니메이션 */
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1deg); } /* 살짝 회전 */
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* 빙하 모양 변형 (불규칙함) */
 .shape-1 { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; animation-delay: 0s; }
 .shape-2 { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; animation-delay: 1.2s; }
 .shape-3 { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; animation-delay: 2.5s; }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-.day-num { font-size: 1.8rem; font-weight: 900; color: var(--primary-color); }
+/* 텍스트 스타일 */
+.day-num { font-size: 1.8rem; font-weight: 900; color: var(--accent-blue); }
 .day-label { font-size: 1rem; color: #666; font-weight: 600; }
 
-/* 반응형 미디어 쿼리 */
-@media (max-width: 1024px) {
-    .grid-container { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-}
-@media (max-width: 600px) {
-    .grid-container { grid-template-columns: 1fr; }
-    .iceberg-shape { height: 200px; }
-    .nav-links { display: none; }
-    .flashcard { width: 100%; height: 350px; }
-    .word-text { font-size: 2.5rem; }
-}
+/* 숨김 클래스 (SPA 전환용) */
+.hidden { display: none !important; }
 
-/* =========================================
-   [시험 일정 페이지 디자인] (아이콘 스타일 복구)
-   ========================================= */
-.d-day-container {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-    width: 100%;
-    max-width: 1200px;
-}
-
-.d-day-card {
-    background: white;
-    width: 300px;
-    height: 300px;
-    border-radius: 40px; /* 둥근 사각형 */
-    box-shadow: var(--card-shadow);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    transition: transform 0.3s;
-    border: 1px solid #eef6ff;
-}
-
-.d-day-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--primary-color);
-}
-
-/* 아이콘 크기 확실하게 지정 */
-.icon-area { 
-    font-size: 4rem; /* 아이콘 크기 대폭 확대 */
-    margin-bottom: 20px;
-    line-height: 1; /* 줄 높이 초기화 */
-}
-
-.exam-name { font-size: 1.8rem; font-weight: 800; margin-bottom: 10px; color: #333; }
-.exam-date { color: #888; margin-bottom: 20px; font-weight: 500; }
-.d-day-badge { 
-    font-size: 1.6rem; 
-    font-weight: 900; 
-    color: var(--primary-color);
-    background: #f0f8ff;
-    padding: 8px 20px;
-    border-radius: 20px;
-}
-
-/* =========================================
-   [상세 학습 페이지 UI]
-   ========================================= */
-.study-header { width: 100%; display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 30px; }
-.back-btn { position: absolute; left: 0; background: none; font-size: 1rem; color: #666; font-weight: bold; }
-.back-btn:hover { color: var(--primary-color); }
-#study-title { font-size: 1.8rem; color: #333; }
+/* --- 상세 학습 페이지 UI --- */
+.study-header { width: 100%; position: relative; text-align: center; margin-bottom: 30px; }
+.back-btn { position: absolute; left: 0; top: 5px; font-size: 1rem; color: #888; font-weight: bold; cursor: pointer; border: none; background: none; }
+.back-btn:hover { color: var(--accent-blue); }
 
 .study-card-container { display: flex; align-items: center; justify-content: center; gap: 20px; width: 100%; }
-
 .flashcard {
-    width: 600px;
-    height: 400px;
-    background: white;
-    border-radius: 30px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    width: 600px; height: 400px; background: white;
+    border-radius: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    display: flex; justify-content: center; align-items: center; text-align: center;
     border: 1px solid #eee;
 }
-.word-text { font-size: 4rem; font-weight: 800; color: #333; margin-bottom: 15px; }
-.meaning-text { font-size: 1.8rem; color: #777; font-weight: 500; }
-.nav-btn { background: none; font-size: 3rem; color: var(--primary-color); transition: 0.2s; }
+.word-content { display: flex; flex-direction: column; gap: 15px; }
+.word-text { font-size: 4rem; font-weight: 800; color: var(--primary-black); }
+.meaning-text { font-size: 1.8rem; color: var(--primary-gray); font-weight: 500; }
+
+.nav-btn { font-size: 3rem; color: var(--accent-blue); transition: 0.2s; cursor: pointer; border: none; background: none; }
 .nav-btn:hover { transform: scale(1.1); }
 .nav-btn:disabled { color: #ddd; transform: none; cursor: default; }
 
 .progress-area { width: 100%; max-width: 600px; margin-top: 30px; text-align: center; }
-.progress-bg { width: 100%; height: 8px; background: #e0e0e0; border-radius: 10px; overflow: hidden; }
-.progress-fill { height: 100%; background: var(--primary-color); width: 0%; transition: width 0.3s; }
+.progress-bg { width: 100%; height: 8px; background: #e0e0e0; border-radius: 10px; overflow: hidden; margin-top: 10px; }
+.progress-fill { height: 100%; background: var(--accent-blue); width: 0%; transition: width 0.3s; }
 
-footer { text-align: center; padding: 20px; color: #888; margin-top: auto; }
+/* --- D-Day 카드 스타일 (schedule.html) --- */
+.d-day-container { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; width: 100%; }
+.d-day-card {
+    background: white; width: 300px; height: 300px;
+    border-radius: 40px; box-shadow: var(--card-shadow);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; transition: transform 0.3s; border: 1px solid #eef6ff;
+}
+.d-day-card:hover { transform: translateY(-10px); border-color: var(--accent-blue); }
+.icon-area { font-size: 4rem; margin-bottom: 20px; line-height: 1; }
+.exam-name { font-size: 1.8rem; font-weight: 800; margin-bottom: 10px; color: var(--primary-black); }
+.exam-date { color: #888; margin-bottom: 20px; font-weight: 500; }
+.d-day-badge {
+    font-size: 1.6rem; font-weight: 900; color: var(--accent-blue);
+    background: #f0f8ff; padding: 8px 20px; border-radius: 20px;
+}
+
+/* --- 반응형 (서브 페이지 공통) --- */
+@media (max-width: 1024px) {
+    .grid-container { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .grid-container { grid-template-columns: 1fr; }
+    .flashcard { width: 100%; height: 300px; }
+    .word-text { font-size: 2.5rem; }
+}

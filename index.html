@@ -3,74 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily 10 Words</title>
+    <title>Daily 10 Words - Premium Learning</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+
+    <!-- 헤더 -->
     <header>
+        <div class="logo"><a href="index.html">Daily 10 Words</a></div>
         <nav>
-            <!-- 로고 클릭 시 메인(index.html)으로 이동 -->
-            <div class="logo"><a href="index.html">DAILY 10 WORDS</a></div>
-            <div class="nav-links">
-                <a href="index.html" class="active">Home</a>
-                <!-- 학습하기 클릭 시 study.html로 이동 -->
-                <a href="study.html">학습하기</a>
-                <a href="schedule.html">시험 일정</a>
-                <a href="#">O/X 퀴즈</a>
-                <a href="#">통계</a>
-            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="study.html">오늘의 학습</a></li>
+                <li class="nav-item"><a href="schedule.html">주요 시험 일정</a></li>
+                <li class="nav-item"><a href="#">O/X 퀴즈</a></li>
+                <li class="nav-item"><a href="#">통계</a></li>
+            </ul>
         </nav>
     </header>
 
-    <main>
-        <!-- 현재 메인 콘텐츠는 비워둠 (추후 콘텐츠 추가 예정) -->
-        <section class="view-section">
-            <h2 style="color: #ccc; margin-top: 100px;">메인 페이지 준비 중...</h2>
-        </section>
-    </main>
+    <!-- 1. 히어로 섹션 -->
+    <section class="hero">
+        <div class="hero-text reveal">
+            <h1 class="hero-title">
+                하루에 10단어,<br>
+                <span>영단어!</span>
+            </h1>
+            <p class="hero-desc">
+                티끌 모아 태산이라는 말처럼,<br>
+                매일 조금씩 공부하여 나만의 거대한 지식의 빙하를 만들어보세요.
+            </p>
+            <!-- [링크 수정] study.html 연결 -->
+            <a href="study.html" class="btn-start">
+                학습하러 떠나기 (Start)
+            </a>
+        </div>
+        
+        <div class="hero-visual reveal">
+            <div class="glacier-art"></div>
+        </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 Daily 10 Words. All rights reserved.</p>
-    </footer>
+    <!-- 2. 서비스 소개 -->
+    <section class="section-about">
+        <div class="reveal">
+            <h2 class="about-title">Why Daily 10 Words?</h2>
+            <p class="about-text">
+                언어 학습의 핵심은 <strong>'꾸준함'</strong>입니다. 
+                우리는 하루 10분, 부담 없는 10단어 암기를 통해 여러분의 영어 실력이 
+                자연스럽게 성장하도록 돕습니다.
+            </p>
+        </div>
+    </section>
 
-    <!-- 스크립트 연결 (네비게이션 동작 등을 위해 유지) -->
-    <script src="script.js"></script>
-</body>
-</html>
+    <!-- 3. 주요 기능 -->
+    <section class="section-features">
+        <div class="reveal">
+            <h2 class="about-title" style="text-align: center;">Smart Learning Features</h2>
+        </div>
+        
+        <div class="features-grid">
+            <!-- [링크 수정] 카드 클릭 시 이동 -->
+            <a href="study.html" class="feature-card reveal">
+                <div class="icon-box"><i class="fas fa-book-reader"></i></div>
+                <h3 class="card-title">오늘의 학습</h3>
+                <p class="card-desc">매일 새로운 10개의 영단어를 빙하 카드로 만나보세요.</p>
+            </a>
 
+            <a href="schedule.html" class="feature-card reveal" style="transition-delay: 0.1s;">
+                <div class="icon-box"><i class="far fa-calendar-alt"></i></div>
+                <h3 class="card-title">주요 시험 일정</h3>
+                <p class="card-desc">토익, 수능 등 중요한 시험 D-Day를 확인하세요.</p>
+            </a>
 
-        <!-- [VIEW 2] 상세 학습 화면 (이전과 동일) -->
-        <section id="study-view" class="view-section hidden">
-            <div class="study-header">
-                <button class="back-btn" onclick="showHome()">❮ 목록으로</button>
-                <h2 id="study-title">Day 1 학습</h2>
+            <a href="#" class="feature-card reveal" style="transition-delay: 0.2s;">
+                <div class="icon-box"><i class="far fa-check-circle"></i></div>
+                <h3 class="card-title">O/X 퀴즈</h3>
+                <p class="card-desc">오늘 외운 단어를 가볍게 테스트하세요.</p>
+            </a>
+
+            <a href="#" class="feature-card reveal" style="transition-delay: 0.3s;">
+                <div class="icon-box"><i class="fas fa-chart-line"></i></div>
+                <h3 class="card-title">나의 통계</h3>
+                <p class="card-desc">내가 쌓은 빙하의 크기를 시각적으로 확인하세요.</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">Daily 10 Words</div>
+                <p class="footer-desc">언제 어디서나 함께하는 가장 쉬운 영어 학습 파트너.</p>
             </div>
-
-            <div class="study-card-container">
-                <button class="nav-btn" id="card-prev"><i class="fas fa-chevron-left"></i></button>
-
-                <div class="flashcard">
-                    <div class="word-content">
-                        <div class="word-text" id="word-display">Loading...</div>
-                        <div class="meaning-text" id="meaning-display"></div>
-                    </div>
-                </div>
-
-                <button class="nav-btn" id="card-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="footer-links">
+                <a href="#">서비스 소개</a>
+                <a href="#">이용약관</a>
             </div>
-
-            <div class="progress-area">
-                <div class="progress-text" id="progress-text">1 / 10</div>
-                <div class="progress-bg">
-                    <div class="progress-fill" id="progress-fill"></div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Daily 10 Words. All rights reserved.</p>
+        </div>
+        <div class="copyright">
+            &copy; 2024 Daily 10 Words. All rights reserved.
+        </div>
     </footer>
 
     <script src="script.js"></script>

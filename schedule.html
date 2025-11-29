@@ -3,28 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam Schedule - Daily 10 Words</title>
+    <title>Schedule - Daily 10 Words</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo"><a href="index.html">DAILY 10 WORDS</a></div>
-            <div class="nav-links">
-                <a href="index.html">학습하기</a>
-                <a href="schedule.html" class="active">시험 일정</a>
-                <a href="#">O/X 퀴즈</a> <!-- [수정1] 메뉴 통일 -->
-                <a href="#">통계</a>
-            </div>
-        </nav>
+    <header id="global-header">
+        <div class="header-inner">
+            <div class="logo"><a href="index.html">Daily 10 Words</a></div>
+            <nav class="gnb">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="study.html">오늘의 학습</a></li>
+                    <li><a href="schedule.html" class="active">주요 시험 일정</a></li>
+                    <li><a href="#">O/X 퀴즈</a></li>
+                    <li><a href="#">통계</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        </div>
     </header>
 
-    <main>
-        <h1 class="page-title">주요 시험 일정</h1>
+    <main class="sub-main">
+        <h1 class="page-title reveal-text">주요 시험 일정</h1>
         
-        <!-- [수정2] D-Day UI 복원 -->
-        <section class="d-day-container">
+        <!-- [복구] D-Day 카드 컨테이너 -->
+        <section class="d-day-container reveal-text">
             <!-- 수능 -->
             <div class="d-day-card">
                 <div class="icon-area">📅</div>
@@ -52,7 +56,9 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Daily 10 Words. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2025 Daily 10 Words. All rights reserved.</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>

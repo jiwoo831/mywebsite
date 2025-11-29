@@ -8,26 +8,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <!-- 헤더 (메인과 동일) -->
     <header>
+        <div class="logo"><a href="index.html">Daily 10 Words</a></div>
         <nav>
-            <div class="logo"><a href="index.html">DAILY 10 WORDS</a></div>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="study.html" class="active">학습하기</a>
-                <a href="schedule.html">시험 일정</a>
-                <a href="#">O/X 퀴즈</a>
-                <a href="#">통계</a>
-            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="study.html" style="color: var(--accent-blue);">오늘의 학습</a></li>
+                <li class="nav-item"><a href="schedule.html">주요 시험 일정</a></li>
+                <li class="nav-item"><a href="#">O/X 퀴즈</a></li>
+                <li class="nav-item"><a href="#">통계</a></li>
+            </ul>
         </nav>
     </header>
 
-    <main>
-        <!-- [VIEW 1] 빙하 그리드 (Day 선택 화면) -->
+    <main class="sub-page-padding">
+        <!-- [VIEW 1] 빙하 그리드 -->
         <section id="home-view" class="view-section">
-            <h1 class="page-title">오늘의 학습을 선택하세요</h1>
+            <h1 class="about-title reveal" style="text-align:center;">오늘의 학습을 선택하세요</h1>
             
-            <div class="grid-container">
-                <!-- Day 1 ~ 12 아이템들 -->
+            <div class="grid-container reveal">
+                <!-- Day 1 ~ 12 -->
                 <div class="day-item" onclick="startStudy(1)">
                     <div class="iceberg-shape shape-1"><span class="day-num">Day 1</span></div>
                     <div class="day-label">Start</div>
@@ -44,6 +45,7 @@
                     <div class="iceberg-shape shape-1"><span class="day-num">Day 4</span></div>
                     <div class="day-label">Review</div>
                 </div>
+                <!-- (반복 생략 가능하나 요청에 따라 12개 채움) -->
                 <div class="day-item" onclick="startStudy(5)">
                     <div class="iceberg-shape shape-2"><span class="day-num">Day 5</span></div>
                     <div class="day-label">Challenge</div>
@@ -79,11 +81,11 @@
             </div>
         </section>
 
-        <!-- [VIEW 2] 상세 학습 화면 -->
+        <!-- [VIEW 2] 상세 학습 (클릭 시 등장) -->
         <section id="study-view" class="view-section hidden">
             <div class="study-header">
                 <button class="back-btn" onclick="showHome()">❮ 목록으로</button>
-                <h2 id="study-title">Day 1 학습</h2>
+                <h2 style="font-size:1.8rem;" id="study-title">Day 1 학습</h2>
             </div>
 
             <div class="study-card-container">
@@ -106,11 +108,10 @@
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Daily 10 Words. All rights reserved.</p>
+    <footer class="footer">
+        <div class="copyright">&copy; 2024 Daily 10 Words. All rights reserved.</div>
     </footer>
 
-    <!-- 자바스크립트 연결 필수! -->
     <script src="script.js"></script>
 </body>
 </html>
