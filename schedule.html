@@ -8,30 +8,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header id="global-header">
-        <div class="header-inner">
-            <div class="logo"><a href="index.html">Daily 10 Words</a></div>
-            <nav class="gnb">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="study.html">오늘의 학습</a></li>
-                    <li><a href="schedule.html" class="active">주요 시험 일정</a></li>
-                    <li><a href="#">O/X 퀴즈</a></li>
-                    <li><a href="#">통계</a></li>
-                </ul>
-            </nav>
-            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
-        </div>
+    <!-- 헤더 -->
+    <header>
+        <div class="logo"><a href="index.html">Daily 10 Words</a></div>
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="study.html">오늘의 학습</a></li>
+                <li class="nav-item"><a href="schedule.html" style="color: var(--accent-blue);">주요 시험 일정</a></li>
+                <li class="nav-item"><a href="#">O/X 퀴즈</a></li>
+                <li class="nav-item"><a href="#">통계</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main class="sub-main">
-        <h1 class="page-title reveal-text">주요 시험 일정</h1>
+    <!-- 메인 콘텐츠 -->
+    <main class="sub-page-padding">
+        <h1 class="about-title reveal" style="text-align:center;">주요 시험 일정</h1>
         
-        <!-- [복구] D-Day 카드 컨테이너 -->
-        <section class="d-day-container reveal-text">
+        <section class="d-day-container reveal" style="margin-top: 60px;">
             <!-- 수능 -->
             <div class="d-day-card">
-                <div class="icon-area">📅</div>
+                <!-- 이모지 대신 Font Awesome 아이콘 사용 -->
+                <div class="icon-area"><i class="fas fa-graduation-cap"></i></div>
                 <div class="exam-name">수능</div>
                 <div class="exam-date" data-date="2025-11-13">2025.11.13</div>
                 <div class="d-day-badge">D-Day</div>
@@ -39,7 +38,7 @@
 
             <!-- 토익 -->
             <div class="d-day-card">
-                <div class="icon-area">📝</div>
+                <div class="icon-area"><i class="fas fa-file-alt"></i></div>
                 <div class="exam-name">토익</div>
                 <div class="exam-date" data-date="2025-03-16">2025.03.16</div>
                 <div class="d-day-badge">D-Day</div>
@@ -47,7 +46,7 @@
 
             <!-- 오픽 -->
             <div class="d-day-card">
-                <div class="icon-area">🗣️</div>
+                <div class="icon-area"><i class="fas fa-comments"></i></div>
                 <div class="exam-name">오픽</div>
                 <div class="exam-date">상시 접수</div>
                 <div class="d-day-badge">접수중</div>
@@ -55,12 +54,12 @@
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="footer-content">
             <div>
                 <div class="footer-logo">Daily 10 Words</div>
-                <p class="footer-desc">언제 어디서나 함께하는 가장 쉬운 영어 학습 파트너.</p>
+                <p class="footer-desc">매일 쌓이는 영어 실력, 당신의 미래를 바꿉니다. 어디서나 함께하는 가장 쉬운 영어 학습 파트너.</p>
             </div>
             <div class="footer-links">
                 <a href="#">서비스 소개</a>
