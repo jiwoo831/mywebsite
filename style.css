@@ -603,3 +603,66 @@ header {
         padding: 60px 0;
     }
 }
+/* --- 통계(달력) 페이지 스타일 --- */
+.calendar-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.calendar-card {
+    background: white;
+    width: 320px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.cal-month-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.cal-day {
+    aspect-ratio: 1/1; /* 정사각형 유지 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #333;
+    border-radius: 50%; /* 동그라미 모양 */
+    position: relative;
+}
+
+.cal-day.header {
+    font-weight: bold;
+    color: #999;
+}
+
+/* 학습 완료된 날짜 (파란 동그라미) */
+.cal-day.learned {
+    background-color: #2196F3; /* 삼성 블루 */
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(33, 150, 243, 0.4);
+}
+
+/* 오늘 날짜 표시 (선택사항) */
+.cal-day.today {
+    border: 2px solid #2196F3;
+    color: #2196F3;
+}

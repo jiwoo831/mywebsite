@@ -186,28 +186,44 @@ function loadDayData(day) {
 }
 
 function updateCard() {
+    // 1. 필요한 요소들 가져오기
     const wordDisplay = document.getElementById('word-display');
     const meaningDisplay = document.getElementById('meaning-display');
     const progressText = document.getElementById('progress-text');
     const progressFill = document.getElementById('progress-fill');
     const cardPrev = document.getElementById('card-prev');
     const cardNext = document.getElementById('card-next');
+    
+    // [추가된 부분 1] 숨겨둔 '완료 도장 버튼' 가져오기
+    const completeBtnArea = document.getElementById('complete-btn-area');
 
     if (!wordDisplay) return;
 
+    // 2. 현재 단어 정보 업데이트
     const item = currentWords[currentIndex];
     wordDisplay.innerText = item.word;
     meaningDisplay.innerText = item.meaning;
 
+    // 3. 진행률(Progress Bar) 업데이트
     const currentNum = currentIndex + 1;
     const totalNum = currentWords.length;
     progressText.innerText = `${currentNum} / ${totalNum}`;
     progressFill.style.width = `${(currentNum / totalNum) * 100}%`;
 
+    // 4. 이전/다음 화살표 버튼 활성화 여부
     cardPrev.disabled = (currentIndex === 0);
     cardNext.disabled = (currentIndex === totalNum - 1);
     cardPrev.style.opacity = (currentIndex === 0) ? 0.3 : 1;
     cardNext.style.opacity = (currentIndex === totalNum - 1) ? 0.3 : 1;
+
+    // [추가된 부분 2] 마지막 단어(10/10)에 도착했는지 확인!
+    if (currentIndex === totalNum - 1) {
+        // 마지막이면 -> 버튼 보여주기 (Show)
+        if (completeBtnArea) completeBtnArea.style.display = 'block';
+    } else {
+        // 아니면 -> 버튼 숨기기 (Hide)
+        if (completeBtnArea) completeBtnArea.style.display = 'none';
+    }
 }
 
 // 이벤트 리스너 (버튼 존재 시 연결)
@@ -243,4 +259,71 @@ function initDDayLogic() {
             badge.style.color = "#666";
         }
     });
+}
+/* =========================================
+   통계 & 데이터 저장 로직 (LocalStorage)
+   ========================================= */
+
+// 1. 학습 완료 저장 함수 (Study 페이지에서 호출)
+function saveStudyRecord() {
+    // 오늘 날짜 구하기 (YYYY-MM-DD 형식)
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const dateString = `${year}-${month}-${day}`; // 예: "2024-05-25"
+
+    // 기존 기록 가져오기 (없으면 빈 배열)
+    let history = JSON.parse(localStorage.getItem('studyHistory')) || [];
+
+    // 이미 저장된 날짜인지 확인 (중복 방지)
+    if (!history.includes(dateString)) {
+        history.push(dateString);
+        localStorage.setItem('studyHistory', JSON.stringify(history));
+        alert(`📅 ${dateString}\n오늘의 학습 기록이 저장되었습니다!`);
+    } else {
+        alert("오늘은 이미 학습 기록이 저장되어 있습니다. (열정적이시네요!)");
+    }
+}
+
+// 2. 달력 그리기 함수 (Stats 페이지에서 호출)
+function renderFixedCalendar(year, month, elementId) {
+    const container = document.getElementById(elementId);
+    if (!container) return; // 해당 요소 없으면 중단
+
+    // 기록 가져오기
+    const history = JSON.parse(localStorage.getItem('studyHistory')) || [];
+
+    // 달력 HTML 생성 시작
+    let html = `<div class="cal-month-title">${year}년 ${month}월</div>`;
+    html += `<div class="cal-grid">`;
+    
+    // 요일 헤더 (일 ~ 토)
+    const weeks = ['일', '월', '화', '수', '목', '금', '토'];
+    weeks.forEach(w => html += `<div class="cal-day header">${w}</div>`);
+
+    // 날짜 계산
+    const firstDay = new Date(year, month - 1, 1).getDay(); // 이 달 1일의 요일
+    const lastDate = new Date(year, month, 0).getDate();    // 이 달 마지막 날짜
+
+    // 빈 칸 채우기 (1일 전까지)
+    for (let i = 0; i < firstDay; i++) {
+        html += `<div class="cal-day"></div>`;
+    }
+
+    // 날짜 채우기 (1일 ~ 말일)
+    for (let d = 1; d <= lastDate; d++) {
+        // 현재 그리는 날짜 문자열 생성 (YYYY-MM-DD)
+        const currentMonthStr = String(month).padStart(2, '0');
+        const currentDayStr = String(d).padStart(2, '0');
+        const dateKey = `${year}-${currentMonthStr}-${currentDayStr}`;
+
+        // 학습 기록이 있는지 확인
+        const isLearned = history.includes(dateKey) ? 'learned' : '';
+        
+        html += `<div class="cal-day ${isLearned}">${d}</div>`;
+    }
+
+    html += `</div>`; // grid 닫기
+    container.innerHTML = html;
 }

@@ -3,29 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Status - Daily 10 Words</title>
+    <title>My Statistics - Daily 10 Words</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- 헤더 -->
     <header>
         <div class="logo"><a href="index.html">Daily 10 Words</a></div>
         <nav>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="index.html">Home</a></li>
                 <li class="nav-item"><a href="study.html">오늘의 학습</a></li>
-                <li class="nav-item"><a href="schedule.html" style="color: var(--accent-blue);">주요 시험 일정</a></li>
+                <li class="nav-item"><a href="schedule.html">주요 시험 일정</a></li>
                 <li class="nav-item"><a href="quiz.html">O/X 퀴즈</a></li>
-                <li class="nav-item"><a href="status.html">통계</a></li>
+                <li class="nav-item"><a href="stats.html" style="color: var(--accent-blue);">통계</a></li>
             </ul>
         </nav>
     </header>
+
+    <main class="sub-page-padding">
+        <section class="view-section active">
+            <h1 class="about-title reveal" style="text-align:center; margin-bottom: 10px;">나의 학습 기록</h1>
+            <p style="text-align: center; color: #666; margin-bottom: 50px;">
+                매일 꾸준히 학습하여 파란색 빙하 조각을 모아보세요.
+            </p>
+
+            <div class="calendar-wrapper reveal">
+                <div class="calendar-card" id="cal-2025-12"></div>
+                <div class="calendar-card" id="cal-2026-1"></div>
+                <div class="calendar-card" id="cal-2026-2"></div>
+            </div>
+        </section>
+    </main>
+
     <footer class="footer">
         <div class="footer-content">
             <div>
                 <div class="footer-logo">Daily 10 Words</div>
-                <p class="footer-desc">매일 쌓이는 영어 실력, 당신의 미래를 바꿉니다. 어디서나 함께하는 가장 쉬운 영어 학습 파트너.</p>
+                <p class="footer-desc">매일 쌓이는 영어 실력, 당신의 미래를 바꿉니다. 어디서나 함꼐하는 가장 쉬운 영어 학습 파트너.</p>
             </div>
             <div class="footer-links">
                 <a href="#">서비스 소개</a>
@@ -35,5 +51,13 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // 통계 페이지 들어왔을 때 달력 그리기 실행
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFixedCalendar(2025, 12, 'cal-2025-12');
+            renderFixedCalendar(2026, 1, 'cal-2026-1');
+            renderFixedCalendar(2026, 2, 'cal-2026-2');
+        });
+    </script>
 </body>
 </html>

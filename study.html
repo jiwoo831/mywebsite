@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
     <!-- 헤더 (메인과 동일) -->
     <header>
@@ -26,7 +28,7 @@
         <!-- [VIEW 1] 빙하 그리드 -->
         <section id="home-view" class="view-section">
             <h1 class="about-title reveal" style="text-align:center;">오늘의 학습을 선택하세요</h1>
-            
+
             <div class="grid-container reveal">
                 <!-- Day 1 ~ 12 -->
                 <div class="day-item" onclick="startStudy(1)">
@@ -105,6 +107,22 @@
                     <div class="progress-fill" id="progress-fill"></div>
                 </div>
             </div>
+            <div id="complete-btn-area" style="display: none; text-align: center; margin-top: 30px;">
+                <button onclick="saveStudyRecord()" style="
+                    background-color: #2196F3; 
+                    color: white; 
+                    border: none; 
+                    padding: 15px 30px; 
+                    border-radius: 50px; 
+                    font-size: 1.1rem; 
+                    font-weight: bold; 
+                    cursor: pointer; 
+                    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+                    animation: popUp 0.5s ease;
+                ">
+                    <i class="fas fa-check-circle"></i> 오늘의 학습 완료 도장 찍기!
+                </button>
+            </div>
         </section>
     </main>
 
@@ -123,4 +141,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
