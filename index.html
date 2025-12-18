@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily 10 Words - Premium Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -11,10 +12,44 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <div id="splash-screen" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden bg-white">
+    <div class="bg-expand"></div>
+
+    <div class="hero-text-container z-10 text-center relative">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-6 text-sky-500 stagger-text delay-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        </svg>
+        
+        <h1 class="text-center stagger-text delay-2">
+            <span class="block text-xl font-medium text-slate-500 tracking-[0.2em] uppercase mb-2">Daily</span>
+            <span class="block text-6xl min-[400px]:text-7xl font-black tracking-tighter text-slate-900">
+                10 <span class="text-sky-500">Words</span>
+            </span>
+        </h1>
+        
+        <p class="text-slate-400 mt-6 text-base font-medium stagger-text delay-3">
+            하루 10단어, 당신의 세상을 넓히세요.
+        </p>
+
+        <div class="loading-line-container mx-auto mt-10">
+            <div class="loading-line"></div>
+        </div>
+    </div>
+
+    <div class="absolute bottom-10 text-slate-300 text-xs font-medium tracking-widest uppercase stagger-text delay-3">
+        © Voca Master
+    </div>
+</div>
 
     <!-- 헤더 -->
     <header>
         <div class="logo"><a href="index.html">Daily 10 Words</a></div>
+        
+    
+    <div class="menu-toggle" id="mobile-menu">
+        <i class="fas fa-bars"></i>
+    </div>
         <nav>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="index.html">Home</a></li>

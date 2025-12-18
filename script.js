@@ -327,3 +327,45 @@ function renderFixedCalendar(year, month, elementId) {
     html += `</div>`; // grid 닫기
     container.innerHTML = html;
 }
+/* --- 스플래쉬 화면 로직 (수정됨: 최초 1회만 실행) --- */
+document.addEventListener('DOMContentLoaded', () => {
+    const splashScreen = document.getElementById('splash-screen');
+
+    // 1. 브라우저에게 "이 사람 스플래쉬 화면 봤어?" 라고 물어보기
+    const hasSeenSplash = sessionStorage.getItem('hasSeenSplash');
+
+    if (hasSeenSplash) {
+        // 2. 이미 봤다면(true) -> 즉시 숨기기 (애니메이션 없이)
+        if (splashScreen) {
+            splashScreen.style.display = 'none';
+        }
+    } else {
+        // 3. 안 봤다면 -> 스플래쉬 화면 보여주고 타이머 시작
+        const SPLASH_DURATION = 3000; 
+
+        if (splashScreen) {
+            setTimeout(() => {
+                splashScreen.classList.add('fade-out-splash');
+                
+                setTimeout(() => {
+                    splashScreen.style.display = 'none';
+                    // 4. [중요] 다 끝난 뒤에 "이제 봤음!" 하고 도장 찍기
+                    sessionStorage.setItem('hasSeenSplash', 'true');
+                }, 800); 
+
+            }, SPLASH_DURATION);
+        }
+    }
+});
+/* --- 모바일 메뉴 토글 스크립트 --- */
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('mobile-menu');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+            // 클릭할 때마다 'active' 클래스를 넣었다 뺐다 함
+            navMenu.classList.toggle('active');
+        });
+    }
+});
