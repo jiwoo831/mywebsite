@@ -14,7 +14,7 @@ let isAnswerChecked = false; // 중복 클릭 방지용
 // 1. 모달 열기 (빙하 클릭 시)
 function openQuizModal(day) {
     quizCurrentDay = day;
-    
+
     // 해당 Day에 데이터가 있는지 확인
     if (!vocabDB[day]) {
         alert("아직 준비 중인 Day입니다.");
@@ -22,22 +22,22 @@ function openQuizModal(day) {
     }
 
     const modal = document.getElementById('startModal');
-    if(modal) modal.style.display = 'flex';
+    if (modal) modal.style.display = 'flex';
 }
 
 // 2. 모달 닫기
 function closeQuizModal() {
     const modal = document.getElementById('startModal');
-    if(modal) modal.style.display = 'none';
+    if (modal) modal.style.display = 'none';
 }
 
 // 3. 게임 시작
 function startQuizGame() {
     closeQuizModal();
-    
+
     // 화면 전환: 빙하 그리드 숨기기 -> 게임 화면 보이기
     document.getElementById('quiz-home-view').style.display = 'none';
-    
+
     const gameView = document.getElementById('quiz-game-view');
     gameView.style.display = 'block';
     gameView.classList.remove('hidden');
@@ -46,7 +46,7 @@ function startQuizGame() {
 
     // 문제 출제
     generateQuestions();
-    
+
     // 첫 문제 표시
     quizIndex = 0;
     quizScore = 0;
@@ -69,13 +69,13 @@ function generateQuestions() {
     quizQuestions = originalData.map(item => {
         // 50% 확률로 정답(True), 50% 확률로 오답(False) 생성
         const isReal = Math.random() < 0.5;
-        
+
         let displayedMeaning = item.meaning; // 기본은 진짜 뜻
-        
+
         if (!isReal) {
             // 오답(X) 문제일 경우: 현재 Day의 단어 중 '나'를 제외한 다른 단어의 뜻을 가져옴
             const otherItems = originalData.filter(w => w.word !== item.word);
-            
+
             // 다른 단어가 있으면 그중 하나 랜덤, 없으면 "틀린 뜻" 텍스트
             if (otherItems.length > 0) {
                 const randomItem = otherItems[Math.floor(Math.random() * otherItems.length)];
@@ -124,7 +124,7 @@ function startTimer() {
     updateTimerBar();
 
     timerInterval = setInterval(() => {
-        timeLeft -= 0.05; 
+        timeLeft -= 0.05;
         updateTimerBar();
 
         if (timeLeft <= 0) {
@@ -136,11 +136,11 @@ function startTimer() {
 
 function updateTimerBar() {
     const bar = document.getElementById('timer-bar');
-    if(!bar) return;
+    if (!bar) return;
 
     const percentage = (timeLeft / 5) * 100;
     bar.style.width = `${percentage}%`;
-    
+
     // 30% 미만 남으면 빨간색 경고
     if (percentage < 30) {
         bar.style.backgroundColor = '#ff4d4d';
@@ -190,7 +190,7 @@ function checkAnswer(userChoice) {
 // 시간 초과 처리
 function handleTimeOut() {
     isAnswerChecked = true;
-    
+
     const currentQ = quizQuestions[quizIndex];
     const btnO = document.querySelector('.btn-o');
     const btnX = document.querySelector('.btn-x');
@@ -214,16 +214,16 @@ function resetButtons() {
 
 function updateScore() {
     const display = document.getElementById('score-display');
-    if(display) display.innerText = `Score: ${quizScore} / ${quizQuestions.length}`;
+    if (display) display.innerText = `Score: ${quizScore} / ${quizQuestions.length}`;
 }
 
 // 8. 게임 종료 및 결과
 function endQuiz() {
     const finalScoreDisplay = document.getElementById('final-score');
-    if(finalScoreDisplay) finalScoreDisplay.innerText = `${quizScore * 10}점`; // 100점 만점 환산
+    if (finalScoreDisplay) finalScoreDisplay.innerText = `${quizScore * 10}점`; // 100점 만점 환산
 
     const resultModal = document.getElementById('resultModal');
-    if(resultModal) resultModal.style.display = 'flex';
+    if (resultModal) resultModal.style.display = 'flex';
 }
 
 // 나가기 (새로고침)

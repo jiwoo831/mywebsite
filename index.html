@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,49 +8,55 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
-    <div id="splash-screen" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden bg-white">
-    <div class="bg-expand"></div>
+    <div id="splash-screen"
+        class="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden bg-white">
+        <div class="bg-expand"></div>
 
-    <div class="hero-text-container z-10 text-center relative">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-6 text-sky-500 stagger-text delay-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-        </svg>
-        
-        <h1 class="text-center stagger-text delay-2">
-            <span class="block text-xl font-medium text-slate-500 tracking-[0.2em] uppercase mb-2">Daily</span>
-            <span class="block text-6xl min-[400px]:text-7xl font-black tracking-tighter text-slate-900">
-                10 <span class="text-sky-500">Words</span>
-            </span>
-        </h1>
-        
-        <p class="text-slate-400 mt-6 text-base font-medium stagger-text delay-3">
-            하루 10단어, 당신의 세상을 넓히세요.
-        </p>
+        <div class="hero-text-container z-10 text-center relative">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-6 text-sky-500 stagger-text delay-1"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
 
-        <div class="loading-line-container mx-auto mt-10">
-            <div class="loading-line"></div>
+            <h1 class="text-center stagger-text delay-2">
+                <span class="block text-xl font-medium text-slate-500 tracking-[0.2em] uppercase mb-2">Daily</span>
+                <span class="block text-6xl min-[400px]:text-7xl font-black tracking-tighter text-slate-900">
+                    10 <span class="text-sky-500">Words</span>
+                </span>
+            </h1>
+
+            <p class="text-slate-400 mt-6 text-base font-medium stagger-text delay-3">
+                하루 10단어, 당신의 세상을 넓히세요.
+            </p>
+
+            <div class="loading-line-container mx-auto mt-10">
+                <div class="loading-line"></div>
+            </div>
+        </div>
+
+        <div
+            class="absolute bottom-10 text-slate-300 text-xs font-medium tracking-widest uppercase stagger-text delay-3">
+            © Voca Master
         </div>
     </div>
-
-    <div class="absolute bottom-10 text-slate-300 text-xs font-medium tracking-widest uppercase stagger-text delay-3">
-        © Voca Master
-    </div>
-</div>
 
     <!-- 헤더 -->
     <header>
         <div class="logo"><a href="index.html">Daily 10 Words</a></div>
-        
-    
-    <div class="menu-toggle" id="mobile-menu">
-        <i class="fas fa-bars"></i>
-    </div>
+
+
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
         <nav>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="index.html">Home</a></li>
@@ -77,7 +84,7 @@
                 학습하러 떠나기 (Start)
             </a>
         </div>
-        
+
         <div class="hero-visual reveal">
             <div class="glacier-art"></div>
         </div>
@@ -88,8 +95,8 @@
         <div class="reveal">
             <h2 class="about-title">Why Daily 10 Words?</h2>
             <p class="about-text">
-                언어 학습의 핵심은 <strong>'꾸준함'</strong>입니다. 
-                <strong>Daily 10 Words</strong>는 하루 10분, 부담 없는 10단어 암기를 통해 여러분의 영어 실력이 
+                언어 학습의 핵심은 <strong>'꾸준함'</strong>입니다.
+                <strong>Daily 10 Words</strong>는 하루 10분, 부담 없는 10단어 암기를 통해 여러분의 영어 실력이
                 자연스럽게 성장하도록 돕습니다. 거대한 빙하도 작은 눈송이에서 시작되듯, 여러분의 영어 자신감도 오늘 외운 단어 하나에서 시작됩니다.
             </p>
         </div>
@@ -100,7 +107,7 @@
         <div class="reveal">
             <h2 class="about-title" style="text-align: center;">Smart Learning Features</h2>
         </div>
-        
+
         <div class="features-grid">
             <!-- [링크 수정] 카드 클릭 시 이동 -->
             <a href="study.html" class="feature-card reveal">
@@ -130,131 +137,131 @@
     </section>
 
     <!-- [4. 사용자 후기 섹션] -->
-<section class="section-reviews">
-    <h2 class="section-title">Users' Experience</h2>
-    <p class="section-desc">수많은 사용자들이 경험한 놀라운 변화를 확인하세요.</p>
-    
-    <div class="marquee-wrapper">
-        <!-- 트랙 안에 카드 묶음을 2번 반복(Set 1, Set 2)해야 끊김 없이 돌아갑니다 -->
-        <div class="marquee-track">
-            
-            <!-- [SET 1] 첫 번째 묶음 -->
-            <div class="review-card">
-                <div class="quote-icon">❝</div>
-                <div class="review-content">
-                    <p class="review-text">매일 10단어씩 외우니 부담이 전혀 없어요. 프리미어리그 시절 도움이 많이 됐습니다!</p>
-                    <div class="reviewer-info">
-                        <div class="reviewer-avatar"></div>
-                        <div>
-                            <div class="reviewer-name">손흥민님</div>
-                            <div class="reviewer-tag">축구선수 · 23일째 학습 중</div>
+    <section class="section-reviews">
+        <h2 class="section-title">Users' Experience</h2>
+        <p class="section-desc">수많은 사용자들이 경험한 놀라운 변화를 확인하세요.</p>
+
+        <div class="marquee-wrapper">
+            <!-- 트랙 안에 카드 묶음을 2번 반복(Set 1, Set 2)해야 끊김 없이 돌아갑니다 -->
+            <div class="marquee-track">
+
+                <!-- [SET 1] 첫 번째 묶음 -->
+                <div class="review-card">
+                    <div class="quote-icon">❝</div>
+                    <div class="review-content">
+                        <p class="review-text">매일 10단어씩 외우니 부담이 전혀 없어요. 프리미어리그 시절 도움이 많이 됐습니다!</p>
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar"></div>
+                            <div>
+                                <div class="reviewer-name">손흥민님</div>
+                                <div class="reviewer-tag">축구선수 · 23일째 학습 중</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="review-card">
-                <div class="quote-icon">❝</div>
-                <div class="review-content">
-                    <p class="review-text">디자인이 너무 예뻐서 매일 들어오게 돼요. 삭막한 공부가 아니라 힐링하는 기분이라 꾸준히 하게 됩니다.</p>
-                    <div class="reviewer-info">
-                        <div class="reviewer-avatar"></div>
-                        <div>
-                            <div class="reviewer-name">이계훈님</div>
-                            <div class="reviewer-tag">직장인 · 45일째 학습 중</div>
+                <div class="review-card">
+                    <div class="quote-icon">❝</div>
+                    <div class="review-content">
+                        <p class="review-text">디자인이 너무 예뻐서 매일 들어오게 돼요. 삭막한 공부가 아니라 힐링하는 기분이라 꾸준히 하게 됩니다.</p>
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar"></div>
+                            <div>
+                                <div class="reviewer-name">이계훈님</div>
+                                <div class="reviewer-tag">직장인 · 45일째 학습 중</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="review-card">
-                <div class="quote-icon">❝</div>
-                <div class="review-content">
-                    <p class="review-text">O/X 퀴즈로 바로 복습하니까 기억에 오래 남아요. 토익 점수 앞자리가 바뀌었습니다. 강력 추천해요!</p>
-                    <div class="reviewer-info">
-                        <div class="reviewer-avatar"></div>
-                        <div>
-                            <div class="reviewer-name">김준규님</div>
-                            <div class="reviewer-tag">대학생 · 12일째 학습 중</div>
+                <div class="review-card">
+                    <div class="quote-icon">❝</div>
+                    <div class="review-content">
+                        <p class="review-text">O/X 퀴즈로 바로 복습하니까 기억에 오래 남아요. 토익 점수 앞자리가 바뀌었습니다. 강력 추천해요!</p>
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar"></div>
+                            <div>
+                                <div class="reviewer-name">김준규님</div>
+                                <div class="reviewer-tag">대학생 · 12일째 학습 중</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="review-card">
-                <div class="quote-icon">❝</div>
-                <div class="review-content">
-                    <p class="review-text">출퇴근길 지하철에서 딱 10분 투자하는데, 실력이 느는 게 느껴져요. 최고의 영어 습관 앱입니다.</p>
-                    <div class="reviewer-info">
-                        <div class="reviewer-avatar"></div>
-                        <div>
-                            <div class="reviewer-name">감스트님</div>
-                            <div class="reviewer-tag">개발자 · 60일째 학습 중</div>
+                <div class="review-card">
+                    <div class="quote-icon">❝</div>
+                    <div class="review-content">
+                        <p class="review-text">출퇴근길 지하철에서 딱 10분 투자하는데, 실력이 느는 게 느껴져요. 최고의 영어 습관 앱입니다.</p>
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar"></div>
+                            <div>
+                                <div class="reviewer-name">감스트님</div>
+                                <div class="reviewer-tag">개발자 · 60일째 학습 중</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- [SET 2] 두 번째 묶음 (복제본) - 필수! -->
-            <div class="review-card">
-                <div class="quote-icon">❝</div>
-                <div class="review-content">
-                    <p class="review-text">매일 10단어씩 외우니 부담이 전혀 없어요. 프리미어리그 시절 도움이 많이 됐습니다!</p>
-                    <div class="reviewer-info">
-                        <div class="reviewer-avatar"></div>
-                        <div>
-                            <div class="reviewer-name">손흥민님</div>
-                            <div class="reviewer-tag">축구선수 · 23일째 학습 중</div>
+                <!-- [SET 2] 두 번째 묶음 (복제본) - 필수! -->
+                <div class="review-card">
+                    <div class="quote-icon">❝</div>
+                    <div class="review-content">
+                        <p class="review-text">매일 10단어씩 외우니 부담이 전혀 없어요. 프리미어리그 시절 도움이 많이 됐습니다!</p>
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar"></div>
+                            <div>
+                                <div class="reviewer-name">손흥민님</div>
+                                <div class="reviewer-tag">축구선수 · 23일째 학습 중</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="review-card">
-                <div class="quote-icon">❝</div>
-                <div class="review-content">
-                    <p class="review-text">디자인이 너무 예뻐서 매일 들어오게 돼요. 삭막한 공부가 아니라 힐링하는 기분이라 꾸준히 하게 됩니다.</p>
-                    <div class="reviewer-info">
-                        <div class="reviewer-avatar"></div>
-                        <div>
-                            <div class="reviewer-name">이계훈님</div>
-                            <div class="reviewer-tag">직장인 · 45일째 학습 중</div>
+                <div class="review-card">
+                    <div class="quote-icon">❝</div>
+                    <div class="review-content">
+                        <p class="review-text">디자인이 너무 예뻐서 매일 들어오게 돼요. 삭막한 공부가 아니라 힐링하는 기분이라 꾸준히 하게 됩니다.</p>
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar"></div>
+                            <div>
+                                <div class="reviewer-name">이계훈님</div>
+                                <div class="reviewer-tag">직장인 · 45일째 학습 중</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="review-card">
-                <div class="quote-icon">❝</div>
-                <div class="review-content">
-                    <p class="review-text">O/X 퀴즈로 바로 복습하니까 기억에 오래 남아요. 토익 점수 앞자리가 바뀌었습니다. 강력 추천해요!</p>
-                    <div class="reviewer-info">
-                        <div class="reviewer-avatar"></div>
-                        <div>
-                            <div class="reviewer-name">김준규님</div>
-                            <div class="reviewer-tag">대학생 · 12일째 학습 중</div>
+                <div class="review-card">
+                    <div class="quote-icon">❝</div>
+                    <div class="review-content">
+                        <p class="review-text">O/X 퀴즈로 바로 복습하니까 기억에 오래 남아요. 토익 점수 앞자리가 바뀌었습니다. 강력 추천해요!</p>
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar"></div>
+                            <div>
+                                <div class="reviewer-name">김준규님</div>
+                                <div class="reviewer-tag">대학생 · 12일째 학습 중</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="review-card">
-                <div class="quote-icon">❝</div>
-                <div class="review-content">
-                    <p class="review-text">출퇴근길 지하철에서 딱 10분 투자하는데, 실력이 느는 게 느껴져요. 최고의 영어 습관 앱입니다.</p>
-                    <div class="reviewer-info">
-                        <div class="reviewer-avatar"></div>
-                        <div>
-                            <div class="reviewer-name">감스트님</div>
-                            <div class="reviewer-tag">개발자 · 60일째 학습 중</div>
+                <div class="review-card">
+                    <div class="quote-icon">❝</div>
+                    <div class="review-content">
+                        <p class="review-text">출퇴근길 지하철에서 딱 10분 투자하는데, 실력이 느는 게 느껴져요. 최고의 영어 습관 앱입니다.</p>
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar"></div>
+                            <div>
+                                <div class="reviewer-name">감스트님</div>
+                                <div class="reviewer-tag">개발자 · 60일째 학습 중</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- 푸터 -->
     <footer class="footer">
@@ -272,4 +279,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

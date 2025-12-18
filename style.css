@@ -333,41 +333,7 @@ header {
     font-size: 0.8rem;
 }
 
-/* --- 반응형 (메인) --- */
-@media (max-width: 768px) {
-    header {
-        padding: 0 20px;
-    }
 
-    .nav-menu {
-        display: none;
-    }
-
-    .hero {
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        padding-top: 100px;
-    }
-
-    .hero-title {
-        font-size: 2.8rem;
-    }
-
-    .hero-visual {
-        display: none;
-    }
-
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-}
 
 
 /* ==========================================================================
@@ -995,18 +961,7 @@ header {
     }
 }
 
-/* 모바일 반응형 */
-@media (max-width: 768px) {
-    .review-card {
-        width: 300px;
-        /* 모바일에서는 카드 크기 축소 */
-        padding: 30px;
-    }
 
-    .section-reviews {
-        padding: 60px 0;
-    }
-}
 
 /* --- 통계(달력) 페이지 스타일 --- */
 .calendar-wrapper {
@@ -1197,55 +1152,52 @@ header {
         opacity: 0;
     }
 }
-/* 
-   [추가] 모바일 햄버거 메뉴 스타일
+/* ==========================================================================
+   [통합] 반응형 스타일 (모바일)
+   ========================================================================== */
+/* 1. 햄버거 버튼 (기본 숨김) */
+.menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #333; }
 
-/* 1. 기본 상태: PC에서는 햄버거 버튼 숨김 */
-.menu-toggle {
-    display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #333; /* 버튼 색상 */
-}
-
-/* 2. 모바일 상태 (화면 폭 768px 이하) */
+/* 2. 모바일 화면 (768px 이하) */
 @media (max-width: 768px) {
-    /* 햄버거 버튼 보이기 */
-    .menu-toggle {
-        display: block;
-        position: absolute;
-        right: 20px;
-        top: 20px; /* 위치 조정 필요시 수정 */
-    }
+    /* 헤더 & 레이아웃 조정 */
+    header { padding: 0 20px; }
+    .hero { flex-direction: column; justify-content: center; text-align: center; padding-top: 100px; }
+    .hero-title { font-size: 2.8rem; }
+    .hero-visual { display: none; }
+    .features-grid { grid-template-columns: 1fr; }
+    .footer-content { flex-direction: column; align-items: center; text-align: center; }
+    
+    /* 리뷰 카드 & 그리드 조정 */
+    .review-card { width: 300px; padding: 30px; }
+    .section-reviews { padding: 60px 0; }
+    .grid-container { grid-template-columns: 1fr; }
+    .flashcard { width: 100%; height: 300px; }
+    .word-text { font-size: 2.5rem; }
 
-    /* 메뉴 기본 숨김 (PC 스타일 무시하고 새로 정의) */
+    /* 햄버거 버튼 보이기 */
+    .menu-toggle { display: block; position: absolute; right: 20px; top: 20px; }
+
+    /* 메뉴 드로어 스타일 (기존 가로 메뉴 숨기고 세로로 재정의) */
     .nav-menu {
         display: none; /* 평소엔 안 보임 */
         flex-direction: column;
         width: 100%;
         background-color: white;
         position: absolute;
-        top: 60px; /* 헤더 높이만큼 아래로 */
+        top: 60px;
         left: 0;
         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         padding: 20px 0;
         text-align: center;
         z-index: 999;
     }
+    .nav-menu li { margin: 15px 0; }
 
-    /* 메뉴 아이템 간격 조정 */
-    .nav-menu li {
-        margin: 15px 0;
-    }
-
-    /* [중요] 자바스크립트가 'active' 클래스를 붙이면 메뉴가 보임 */
-    .nav-menu.active {
-        display: flex;
-        animation: slideDown 0.3s ease forwards;
-    }
+    /* JS로 active 클래스 붙으면 보임 */
+    .nav-menu.active { display: flex; animation: slideDown 0.3s ease forwards; }
 }
 
-/* 메뉴가 스르륵 내려오는 애니메이션 */
 @keyframes slideDown {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
